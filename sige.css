@@ -1,0 +1,113 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Preto com um pouco de transparência */
+}
+
+.sigecontrol-board {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 611px; /* Ajuste para a largura da sua imagem */
+    height: 394px; /* Ajuste para a altura da sua imagem */
+
+}
+.led{
+    position: absolute;
+    width: 8px;
+    height: 10px;
+}
+
+#ledPower {
+    top: 57.5%;
+    left: 24.4%;
+}
+
+#led1 {
+    top: 35%;
+    left: 36.7%;
+}
+
+#led2 {
+    top: 35%;
+    left: 44.2%;
+}
+
+#led3 {
+    top: 35%;
+    left:  51.7%;
+}
+
+#led4 {
+    top: 35%;
+    left: 59%;
+}
+
+#led5 {
+    top: 35%;
+    left: 66.5%;
+}
+
+#led6 {
+    top: 35%;
+    left: 74%;
+}
+
+#led7 {
+    top: 35%;
+    left:  81.4%;
+}
+
+#led8 {
+    top: 35%;
+    left: 89%;
+}
+
+.ledOn {
+    background-color: #ff0000; /* Cor vermelha intensa */
+    transition: background-color 0.5s ease;
+    border-radius: 1px; /* Suaviza as bordas levemente */
+    box-shadow: 0 0 7px 3px #ff0000, 0 0 8px 1px #ff1a1a; /* Adiciona um brilho vibrante */
+}
+
+.ledOff {
+    background-color: transparent; /* Inicia invisível */
+}
+
+
+
+#sigeImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.bot {
+    position: absolute;
+    width: 23px; /* Define a largura do botão */
+    height: 23px; /* Define a altura do botão */
+    background-color: rgba(255, 255, 255, 0.0); /* Ligeiramente visível para fins de desenvolvimento */
+    cursor: pointer; /* Muda o cursor para indicar interatividade */
+    transition: background-color 0.2s; /* Suave transição de cor ao interagir */
+}
+
+/* Exemplo de posicionamento dos botões, ajuste conforme suas coordenadas */
+#bot1 { top: 77.5%; left: 92.3%; }
+#bot2 { top: 70.9%; left: 92.3%; }
+#bot3 { top: 64.5%; left: 92.3%; }
+#bot4 { top: 58%; left: 92.3%; }
+#bot5 { top: 51.6%; left: 92.3%; }
+#bot6 { top: 45.3%; left: 92.3%; }
+#bot7 { top: 39%; left: 92.3%; }
+#bot8 { top: 32.5%; left: 92.3%; }
+
+/* Estilização para quando o botão é focado ou clicado */
+.bot:hover, .bot:active {
+    background-color: rgba(255, 255, 255, 0.3); /* Torna o botão um pouco mais visível quando interagido */
+}
