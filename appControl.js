@@ -410,6 +410,9 @@ function desligarTodasLampadas() {
     function configurarModoTimerminutos(indice) {
         estado.funcao[indice] = 1;
         estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
+        if(estado.tempoLampada[indice]==0){
+            estado.tempoLampada[indice]=1
+        }
         atualizarVisualLampada(indice);
         esconderCronometro(indice)
     }
@@ -453,6 +456,9 @@ function desligarTodasLampadas() {
     function configurarModoTimersegundos(indice) {
         estado.funcao[indice] = 2;
         estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
+        if(estado.tempoLampada[indice]==0){
+            estado.tempoLampada[indice]=1
+        }
         atualizarVisualLampada(indice);
         tocarSom();
         esconderCronometro(indice)
@@ -499,6 +505,9 @@ function desligarTodasLampadas() {
     function configurarModoRetardoMinutos(indice) {
         estado.funcao[indice] = 8;
         estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
+        if(estado.tempoLampada[indice]==0){
+            estado.tempoLampada[indice]=1
+        }
         atualizarVisualLampada(indice);
         tocarSom();
         esconderCronometro(indice)
@@ -540,6 +549,9 @@ function desligarTodasLampadas() {
     function configurarModoRetardoSegundos(indice) {
         estado.funcao[indice] = 9;
         estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
+         if(estado.tempoLampada[indice]==0){
+            estado.tempoLampada[indice]=1
+        }
         atualizarVisualLampada(indice);
         tocarSom();
         esconderCronometro(indice)

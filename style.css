@@ -7,52 +7,13 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-color: #17212f
-}
-
-
-
-main {
-    width: 100%;
-    height: 90%;
     background-color: #17212f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-
-}
-
-.itens {
-    width: 100%;
-    height: 15%;
-    background-color: #1f2d40;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-   
-
-}
-
-.trabalho {
-    width: 100%;
-    height: 100%;
+    font-size: 1.5vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
-.sigecontrol-board {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-}
-
 .cabecalho {
     width: 100%;
     height: 10%;
@@ -63,6 +24,87 @@ main {
     justify-content:space-around;
 
 }
+
+
+main {
+    width: 100%;
+    height: 70%;
+    background-color: #17212f;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.itens {
+    width: 100%;
+    height: 20%;
+    background-color: #1f2d40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+
+}
+
+
+
+.trabalho {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     background-color: #000;
+      backdrop-filter: blur(10px); /* Efeito de desfocamento */
+}
+
+.control-buttons {
+    position: relative;
+    width:15%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1f2d40;
+ 
+}
+
+.control-btn {
+    margin: 5%;
+    padding: 2%;
+    margin-bottom: 8%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.5vw;
+}
+
+.control-btn:hover {
+    background-color: #45a049; /* Um tom mais escuro de verde no hover */
+}
+
+
+
+
+
+
+.sigecontrol-board {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+   
+}
+
+
 
 .logo{
     width: 7%;
@@ -437,28 +479,6 @@ select#functionSelect {
 }
 
 
-.control-buttons {
-    position: absolute;
-    top: 40%;  /* Ajuste conforme necessário */
-    right: 5%; /* Ajuste conforme necessário */
-    display: flex;
-    flex-direction: column;
-}
-
-.control-btn {
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.control-btn:hover {
-    background-color: #45a049; /* Um tom mais escuro de verde no hover */
-}
 
 .timer-display {
     position: absolute;
@@ -483,9 +503,10 @@ select#functionSelect {
 
 
  table {
-            width: 100%;
+            width: 95%;
             border-collapse: collapse;
             color: white;
+            background-color: #000;
             
    
         }

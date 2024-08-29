@@ -13,18 +13,19 @@
         <img src="oemlogo.png" class="logo" alt="logo" id="logo">
         <h1 class="h1simulador">Simulador SigeControl</h1>
         <div class="toggle-switch">
-            <input type="checkbox" id="powerToggle" class="power-toggle"  title="Ligar/Desligar Simulador">
+            <input type="checkbox" id="powerToggle" class="power-toggle" title="Ligar/Desligar Simulador">
             <label for="powerToggle" class="toggle-label"></label>
             <span class="on">Ligado</span>
             <span class="off">Desligado</span>
         </div>
     </header>
-
-    <div class="control-buttons">
-        <button id="turnOnAll" class="control-btn">Ligar Tudo</button>
-        <button id="turnOffAll" class="control-btn">Apagar Tudo</button>
-    </div>
     <main>
+
+        <div class="control-buttons">
+            <button id="turnOnAll" class="control-btn">Ligar Tudo</button>
+            <button id="turnOffAll" class="control-btn">Apagar Tudo</button>
+        </div>
+
         <div class="trabalho">
             <div class="sigecontrol-board">
                 <img src="sigecontrol.png" class="placa" alt="SiGEControl Board" id="sigeImage">
@@ -72,57 +73,62 @@
             </div>
         </div>
 
-        <div class="itens"><table>
-        <thead>
-            <tr>
-                <th>Dados</th>
-                <th>Porta-01</th>
-                <th>Porta-02</th>
-                <th>Porta-03</th>
-                <th>Porta-04</th>
-                <th>Porta-05</th>
-                <th>Porta-06</th>
-                <th>Porta-07</th>
-                <th>Porta-08</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Status</td>
-                <td id="status-1">Desligado</td>
-                <td id="status-2">Desligado</td>
-                <td id="status-3">Desligado</td>
-                <td id="status-4">Desligado</td>
-                <td id="status-5">Desligado</td>
-                <td id="status-6">Desligado</td>
-                <td id="status-7">Desligado</td>
-                <td id="status-8">Desligado</td>
-            </tr>
-            <tr>
-                <td>Modo Operação</td>
-                <td id="modo-1">Normal</td>
-                <td id="modo-2">Normal</td>
-                <td id="modo-3">Normal</td>
-                <td id="modo-4">Normal</td>
-                <td id="modo-5">Normal</td>
-                <td id="modo-6">Normal</td>
-                <td id="modo-7">Normal</td>
-                <td id="modo-8">Normal</td>
-            </tr>
-            <tr>
-                <td>Tempo</td>
-                <td id="tempo-1">0 s</td>
-                <td id="tempo-2">0 s</td>
-                <td id="tempo-3">0 s</td>
-                <td id="tempo-4">0 s</td>
-                <td id="tempo-5">0 s</td>
-                <td id="tempo-6">0 s</td>
-                <td id="tempo-7">0 s</td>
-                <td id="tempo-8">0 s</td>
-            </tr>
-        </tbody>
-    </table></div>
+
+
+
     </main>
+    <div class="itens">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dados</th>
+                    <th>Porta-01</th>
+                    <th>Porta-02</th>
+                    <th>Porta-03</th>
+                    <th>Porta-04</th>
+                    <th>Porta-05</th>
+                    <th>Porta-06</th>
+                    <th>Porta-07</th>
+                    <th>Porta-08</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Status</td>
+                    <td id="status-1">Desligado</td>
+                    <td id="status-2">Desligado</td>
+                    <td id="status-3">Desligado</td>
+                    <td id="status-4">Desligado</td>
+                    <td id="status-5">Desligado</td>
+                    <td id="status-6">Desligado</td>
+                    <td id="status-7">Desligado</td>
+                    <td id="status-8">Desligado</td>
+                </tr>
+                <tr>
+                    <td>Modo Operação</td>
+                    <td id="modo-1">Normal</td>
+                    <td id="modo-2">Normal</td>
+                    <td id="modo-3">Normal</td>
+                    <td id="modo-4">Normal</td>
+                    <td id="modo-5">Normal</td>
+                    <td id="modo-6">Normal</td>
+                    <td id="modo-7">Normal</td>
+                    <td id="modo-8">Normal</td>
+                </tr>
+                <tr>
+                    <td>Tempo</td>
+                    <td id="tempo-1">0 s</td>
+                    <td id="tempo-2">0 s</td>
+                    <td id="tempo-3">0 s</td>
+                    <td id="tempo-4">0 s</td>
+                    <td id="tempo-5">0 s</td>
+                    <td id="tempo-6">0 s</td>
+                    <td id="tempo-7">0 s</td>
+                    <td id="tempo-8">0 s</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div id="functionModal" class="modal">
         <div class="modal-content">
@@ -140,13 +146,13 @@
                 <option value="8">Retardo minutos</option>
                 <option value="9">Retardo segundo</option>
             </select>
-            <input type="number" class="timeInput" id="timeInput" min="0" max="60"  placeholder="Tempo (0-60)">
+            <input type="number" class="timeInput" id="timeInput" min="0" max="60" placeholder="Tempo (0-60)">
             <button id="saveFunction">Salvar</button>
         </div>
     </div>
 
-    
-<audio id="soundRele" src="rele.mp3" preload="auto"></audio>
+
+    <audio id="soundRele" src="rele.mp3" preload="auto"></audio>
 
     <script src="./appControl.js"></script>
 
