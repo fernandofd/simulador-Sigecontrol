@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var estado = {
     simuladorLigado: false,
-    lamp: [false, false, false, false, false, false, false, false], // Estado das lâmpadas
-    funcao: [0, 0, 0, 0, 0, 0, 0, 0], // Modo de operação de cada canal
-    tempoLampada: [0, 0, 0, 0, 0, 0, 0, 0] // Tempo configurado para cada canal
+    lamp: [false, false, false, false, false, false, false, false], 
+    funcao: [0, 0, 0, 0, 0, 0, 0, 0], 
+    tempoLampada: [0, 0, 0, 0, 0, 0, 0, 0]
 };
 
 
