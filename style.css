@@ -51,7 +51,16 @@ main {
 
 
 
-
+.trabalho {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     background-color: #000;
+      backdrop-filter: blur(10px); /* Efeito de desfocamento */
+}
 
 .control-buttons {
     position: relative;
@@ -85,17 +94,6 @@ main {
 
 
 
-.trabalho {
-    width: 85%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #000;
-    backdrop-filter: blur(10px); /* Efeito de desfocamento */
-}
-
 .sigecontrol-board {
     position: relative;
     display: flex;
@@ -104,13 +102,8 @@ main {
     align-items: center;
     width: 90%;
     height: 90%;
-}
-
-.placa {
-    width: 100%; /* Faz a imagem ocupar 100% da largura do contêiner pai */
-    height: auto; /* Ajusta a altura automaticamente para manter a proporção */
-    max-height: 100%; /* Garante que a imagem não ultrapasse a altura do contêiner pai */
-    object-fit: contain; /* Ajusta a imagem para se ajustar dentro do contêiner mantendo a proporção */
+    
+   
 }
 
 
