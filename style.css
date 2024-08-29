@@ -1,0 +1,519 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #17212f;
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cabecalho {
+    width: 100%;
+    height: 10%;
+    background-color: #1f2d40;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+
+}
+
+
+main {
+    width: 100%;
+    height: 70%;
+    background-color: #17212f;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.itens {
+    width: 100%;
+    height: 20%;
+    background-color: #1f2d40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+
+}
+
+
+
+.trabalho {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     background-color: #000;
+      backdrop-filter: blur(10px); /* Efeito de desfocamento */
+}
+
+.control-buttons {
+    position: relative;
+    width:15%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1f2d40;
+ 
+}
+
+.control-btn {
+    margin: 5%;
+    padding: 2%;
+    margin-bottom: 8%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.5vw;
+}
+
+.control-btn:hover {
+    background-color: #45a049; /* Um tom mais escuro de verde no hover */
+}
+
+
+
+
+
+
+.sigecontrol-board {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+   
+}
+
+
+
+.logo{
+    width: 7%;
+    height: 80%;
+   
+}
+.h1simulador{
+    color: white;
+    font-size: 150%;
+
+}
+
+
+
+
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px; /* Largura ajustada para ser mais compacta */
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 12px;
+    transition: background-color 0.2s;
+    padding: 0;
+}
+
+.toggle-switch .on, .toggle-switch .off {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.2s;
+}
+
+.toggle-switch .on {
+    left: 100%; /* Posiciona à direita do toggle */
+    margin-left: 8px; /* Ajuste para alinhamento */
+    opacity: 0; /* Inicialmente escondido */
+}
+
+.toggle-switch .off {
+    right: 100%; /* Posiciona à esquerda do toggle */
+    margin-right: 8px; /* Ajuste para alinhamento */
+    opacity: 1; /* Inicialmente visível */
+}
+
+input:checked + .toggle-label + .on {
+    opacity: 1; /* Mostra quando ligado */
+}
+
+input:checked + .toggle-label + .on + .off {
+    opacity: 0; /* Esconde quando ligado */
+}
+
+input:not(:checked) + .toggle-label + .on {
+    opacity: 0; /* Esconde quando desligado */
+}
+
+input:not(:checked) + .toggle-label + .on + .off {
+    opacity: 1; /* Mostra quando desligado */
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-switch .toggle-label {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+input:checked + .toggle-label {
+    transform: translateX(26px);
+    background-color: #4CAF50;
+}
+
+
+
+
+
+
+
+.led {
+    position: absolute;
+    width: 1.5%;
+    height: 4%;
+}
+
+#ledPower {
+    top: 57.5%;
+    left: 24.4%;
+}
+
+#led1 {
+    top: 33%;
+    left: 36.7%;
+}
+
+#led2 {
+    top: 33%;
+    left: 44.2%;
+}
+
+#led3 {
+    top: 33%;
+    left: 51.7%;
+}
+
+#led4 {
+    top: 33%;
+    left: 59%;
+}
+
+#led5 {
+    top: 33%;
+    left: 66.5%;
+}
+
+#led6 {
+    top: 33%;
+    left: 74%;
+}
+
+#led7 {
+    top: 33%;
+    left: 81.4%;
+}
+
+#led8 {
+    top: 33%;
+    left: 89%;
+}
+
+.ledOn {
+    background-color: #ff0000;
+    /* Cor vermelha intensa */
+    transition: background-color 0.5s ease;
+    border-radius: 1px;
+    /* Suaviza as bordas levemente */
+    box-shadow: 0 0 7px 3px #ff0000, 0 0 8px 1px #ff1a1a;
+    /* Adiciona um brilho vibrante */
+}
+
+.ledOff {
+    background-color: transparent;
+    /* Inicia invisível */
+}
+
+
+
+#sigeImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.bot {
+    position: absolute;
+    width: 3.5%;
+    /* Define a largura do botão */
+    height: 6%;
+    /* Define a altura do botão */
+    background-color: rgba(255, 255, 255, 0.0);
+    /* Ligeiramente visível para fins de desenvolvimento */
+    cursor: pointer;
+    /* Muda o cursor para indicar interatividade */
+    transition: background-color 0.2s;
+    /* Suave transição de cor ao interagir */
+}
+
+/* Exemplo de posicionamento dos botões, ajuste conforme suas coordenadas */
+#bot1 {
+    top: 80.3%;
+    left: 92.5%;
+}
+
+#bot2 {
+    top: 73.1%;
+    left: 92.5%;
+}
+
+#bot3 {
+    top: 66.1%;
+    left: 92.5%;
+}
+
+#bot4 {
+    top: 59.1%;
+    left: 92.5%;
+}
+
+#bot5 {
+    top: 52.1%;
+    left: 92.5%;
+}
+
+#bot6 {
+    top: 45.1%;
+    left: 92.5%;
+}
+
+#bot7 {
+    top: 38.1%;
+    left: 92.5%;
+}
+
+#bot8 {
+    top: 31.1%;
+    left: 92.5%;
+}
+
+#rst {
+    top: 33%;
+    left: 21.5%;
+}
+
+#rstdefaut {
+    top: 67.4%;
+    left: 11.2%;
+}
+
+
+
+/* Estilização para quando o botão é focado ou clicado */
+.bot:hover,
+.bot:active {
+    background-color: rgba(247, 5, 5, 0.466);
+    /* Torna o botão um pouco mais visível quando interagido */
+}
+
+
+.rele-button{
+     position: absolute;
+    width: 6%;
+    /* Define a largura do botão */
+    height: 13%;
+    /* Define a altura do botão */
+    background-color: rgba(255, 255, 255, 0.0);
+    /* Ligeiramente visível para fins de desenvolvimento */
+    cursor: pointer;
+    /* Muda o cursor para indicar interatividade */
+    transition: background-color 0.2s;
+    /* Suave transição de cor ao interagir */
+}
+
+#rele1{
+     top: 18.7%;
+    left: 31%;
+}
+#rele2{
+     top: 18.7%;
+    left: 39%;
+}
+#rele3{
+     top: 18.7%;
+    left: 47%;
+}
+#rele4{
+     top: 18.7%;
+    left: 55%;
+}
+#rele5{
+     top: 18.7%;
+    left: 62.5%;
+}
+#rele6{
+     top: 18.7%;
+    left: 70.5%;
+}
+#rele7{
+     top: 18.7%;
+    left: 78.4%;
+}
+#rele8{
+     top: 18.7%;
+    left: 86%;
+}
+/* Estilização para quando o botão é focado ou clicado */
+.rele-button:hover,
+.rele-button:active {
+    background-color: rgba(247, 5, 5, 0.466);
+    /* Torna o botão um pouco mais visível quando interagido */
+}
+
+
+/* Estilo do Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Certifique-se de que está acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Cobrir a tela inteira */
+    height: 100%; /* Cobrir a tela inteira */
+    overflow: auto; /* Permitir rolagem se necessário */
+    background-color: rgba(0,0,0,0.4); /* Fundo escuro semitransparente */
+}
+
+.timeInput{
+    color: #aaaaaa;
+    float: left;
+    font-size: 14px;
+   
+    cursor: pointer;
+     border-radius: 5px; /* Borda arredondada */
+     margin-top: 5px;
+      color: #000;
+      display:none;
+}
+
+h2{
+    color: white;
+}
+
+.modal-content {
+    background-color: #17212f; /* Mesma cor do background do main */
+    margin: 10% auto; /* Centralizado verticalmente e com margem */
+    padding: 20px;
+    border: 1px solid #888; /* Borda sutil */
+    width: 30%; /* Largura do conteúdo do modal */
+    border-radius: 10px; /* Borda arredondada */
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+button#saveFunction {
+    padding: 10px 20px;
+    margin-left: 22%;
+    margin-top: 10%;
+    background-color: #4CAF50; /* Verde para ação positiva */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button#saveFunction:hover {
+    background-color: #45a049; /* Um tom mais escuro de verde no hover */
+}
+
+/* Estilo do select */
+select#functionSelect {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+.timer-display {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 1); /* Cor de fundo semitransparente para contraste */
+    border-radius: 5px;
+    padding: 3px;
+    display: none; /* Ocultar inicialmente */
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#timerDisplay1 { top: 12%; left: 31%; }
+#timerDisplay2 { top: 12%; left: 39%; }
+#timerDisplay3 { top: 12%; left: 47%; }
+#timerDisplay4 { top: 12%; left: 55%; }
+#timerDisplay5 { top: 12%; left: 62.5%; }
+#timerDisplay6 { top: 12%; left: 70.5%; }
+#timerDisplay7 { top: 12%; left: 78%; }
+#timerDisplay8 { top: 12%; left: 86%; }
+
+
+ table {
+            width: 95%;
+            border-collapse: collapse;
+            color: white;
+            background-color: #000;
+            
+   
+        }
+
+        th, td {
+            border: 1px solid #fff;
+            text-align: center;
+        }
+
+      
