@@ -100,17 +100,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60%;
-    transition: transform 0.3s ease; /* Adiciona uma transição suave */
-}
-
-/* Media query para detectar quando a altura é maior que a largura */
-@media (orientation: portrait) {
-    .sigecontrol-board {
-        transform: rotate(90deg); /* Gira a div em 90 graus */
-        width: auto; /* Ajusta a largura para se adaptar à nova orientação */
-        height: 60%; /* Ajusta a altura */
-    }
+    width: 50%;
+   
 }
 
 
