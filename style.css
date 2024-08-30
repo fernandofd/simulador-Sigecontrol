@@ -58,7 +58,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-     background-color: #000;
+      background-color: #17212f;
       backdrop-filter: blur(10px); /* Efeito de desfocamento */
 }
 
@@ -69,7 +69,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #1f2d40;
+    /* background-color: #1f2d40; */
  
 }
 
