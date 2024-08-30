@@ -84,10 +84,10 @@ function alternarLEDPower(ativo) {
 // rst básico, somente deliga tudo mas não perde as configurações
 function rst() {
     for (let index = 0; index < estado.lamp.length; index++) {
-       if(estado.lamp[index]==1){
-        index= estado.lamp.length
-        tocarSom()
-       }
+        if (estado.lamp[index] == 1) {
+            index = estado.lamp.length
+            tocarSom()
+        }
     }
     estado.lamp.fill(false);
     atualizarTodasLampadas();
@@ -232,43 +232,44 @@ function definirFuncao(indice, funcao) {
             }
         }
 
-        if (funcao !=4 && funcao !=5 && funcao!=6){
-             clearTimeout(estado[`temporizadorAtual_${indice}`]);
-        clearInterval(estado[`intervaloCronometro_${indice}`]);
-        estado.funcao[indice] = funcao;
-        esconderCronometro(indice); // Esconde o cronômetro ao trocar de função
-        // Desliga a lâmpada associada ao canal
-        if (estado.lamp[indice] == 1) {
-            estado.lamp[indice] = 0;
-            tocarSom()
-        }
-        let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
-        if (funcao == 3 || funcao == 7) {
-            esconderCronometro(par); // Esconde o cronômetro ao trocar de função
-            estado.funcao[par] = funcao
-            if (estado.lamp[par] == 1) {
-                estado.lamp[par] = 0;
+        if (funcao != 4 && funcao != 5 && funcao != 6) {
+            clearTimeout(estado[`temporizadorAtual_${indice}`]);
+            clearInterval(estado[`intervaloCronometro_${indice}`]);
+            estado.funcao[indice] = funcao;
+            esconderCronometro(indice); // Esconde o cronômetro ao trocar de função
+            // Desliga a lâmpada associada ao canal
+            if (estado.lamp[indice] == 1) {
+                estado.lamp[indice] = 0;
                 tocarSom()
             }
-        }
-
-
-        // Verifica se a função anterior era "Nível" ou "Reversão"
-        if (estado.funcao[par] === 3 || estado.funcao[par] === 7) {
-            if (funcao !== 3 && funcao !== 7) {
-                // Se o novo modo não é "Nível" ou "Reversão", redefine o par para "Normal"
-                estado.funcao[par] = 0;
+            let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
+            if (funcao == 3 || funcao == 7) {
+                esconderCronometro(par); // Esconde o cronômetro ao trocar de função
+                estado.funcao[par] = funcao
+                 estado.tempoLampada[par] = estado.tempoLampada[indice];
                 if (estado.lamp[par] == 1) {
                     estado.lamp[par] = 0;
                     tocarSom()
                 }
-                esconderCronometro(par); // Esconde o cronômetro do par ao redefinir para "Normal"
             }
+
+
+            // Verifica se a função anterior era "Nível" ou "Reversão"
+            if (estado.funcao[par] === 3 || estado.funcao[par] === 7) {
+                if (funcao !== 3 && funcao !== 7) {
+                    // Se o novo modo não é "Nível" ou "Reversão", redefine o par para "Normal"
+                    estado.funcao[par] = 0;
+                    if (estado.lamp[par] == 1) {
+                        estado.lamp[par] = 0;
+                        tocarSom()
+                    }
+                    esconderCronometro(par); // Esconde o cronômetro do par ao redefinir para "Normal"
+                }
+            }
+
+            atualizarTodasLampadas()
         }
 
-        atualizarTodasLampadas()
-        }
-       
         switch (funcao) {
             // case 0:
             //     configurarModoNormal(indice);
@@ -294,9 +295,9 @@ function definirFuncao(indice, funcao) {
                 construcao(indice)
                 // configurarModoContatora(indice);
                 break;
-            case 7:
-                configurarModoReversao(indice);
-                break;
+            // case 7:
+            //     configurarModoReversao(indice);
+            //     break;
             // case 8:
             //     configurarModoRetardoMinutos(indice);
             //     break;
@@ -397,8 +398,8 @@ function configurarBotoes() {
 
 
 
-function construcao(indice){
-     alert("Em construção, logo disponível.");
+function construcao(indice) {
+    alert("Em construção, logo disponível.");
 
 }
 
@@ -732,28 +733,28 @@ function executarModoNivel(indice) {
 
 
 // Função para configurar o modo Reversão
-function configurarModoReversao(indice) {
-    estado.funcao[indice] = 7;
-    estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice);
+// function configurarModoReversao(indice) {
+//     estado.funcao[indice] = 7;
+//     estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
+//     atualizarVisualLampada(indice);
+//     tocarSom();
+//     esconderCronometro(indice);
 
-    // Identifica o par correspondente
-    let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
+//     // Identifica o par correspondente
+//     let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
 
-    // Configura automaticamente o par para o modo reversão
-    estado.funcao[par] = 7;
-    estado.lamp[par] = false; // Desliga a lâmpada do par
-    atualizarVisualLampada(par);
-    tocarSom();
-    esconderCronometro(par);
+//     // Configura automaticamente o par para o modo reversão
+//     estado.funcao[par] = 7;
+//     estado.lamp[par] = false; // Desliga a lâmpada do par
+//     atualizarVisualLampada(par);
+//     tocarSom();
+//     esconderCronometro(par);
 
-    // Copia o tempo configurado para o par correspondente após a configuração do modal
-    setTimeout(() => {
-        estado.tempoLampada[par] = estado.tempoLampada[indice];
-    }, 100); // Define um pequeno atraso para garantir que o tempo tenha sido configurado
-}
+//     // Copia o tempo configurado para o par correspondente após a configuração do modal
+//     setTimeout(() => {
+//         estado.tempoLampada[par] = estado.tempoLampada[indice];
+//     }, 100); // Define um pequeno atraso para garantir que o tempo tenha sido configurado
+// }
 
 // Função para executar o modo Reversão
 function executarModoReversao(indice) {
@@ -808,7 +809,7 @@ function executarModoReversao(indice) {
 
 
 // Coisas sobre o modal
-// Função para configurar o modal para o modo Reversão
+
 function configurarModal() {
     const modal = document.getElementById('functionModal');
     const closeModal = document.getElementsByClassName('close')[0];
