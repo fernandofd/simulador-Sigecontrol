@@ -65,20 +65,6 @@ function alternarSimulador(ativo) {
     alternarLEDPower(ativo); // Liga ou desliga o LED de power
     if (!ativo) {
         // Apenas desliga as lâmpadas, mas mantém as configurações em memória
-
-        let temligado = 0
-        for (let i = 0; i < estado.lamp.length; i++) {
-            if (estado.lamp[i] == 1) {
-                if (estado.lamp[i] == true) {
-                    temligado = 1
-                    i=estado.lamp.length
-                }
-            }
-        }
-        if (temligado == 1) {
-            tocarSom();
-        }
-
         estado.lamp.fill(false);
         atualizarTodasLampadas();
         esconderTodosCronometros(); // Esconde todos os cronômetros ao desligar o simulador
@@ -97,25 +83,11 @@ function alternarLEDPower(ativo) {
 
 // rst básico, somente deliga tudo mas não perde as configurações
 function rst() {
-
-
-    let temligado = 0
-    for (let i = 0; i < estado.lamp.length; i++) {
-        if (estado.lamp[i] == 1) {
-            if (estado.lamp[i] == true) {
-                temligado = 1
-                estado.lamp[i] = false;
-            }
-        }
-    }
-
-    if (temligado == 1) {
-        tocarSom();
-    }
+    estado.lamp.fill(false);
     atualizarTodasLampadas();
     esconderTodosCronometros(); // Esconde todos os cronômetros ao resetar tudo
-
 }
+
 
 
 // Função para ligar todas as lâmpadas, respeitando as restrições de modo
@@ -247,57 +219,85 @@ function atualizarVisualLampada(indice) {
 
 function definirFuncao(indice, funcao) {
     if (estado.simuladorLigado) {
-        let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
 
-        // Atualiza a função do canal atual
+        if (funcao == 1 || funcao == 2 || funcao == 8 || funcao == 9) {
+            if (estado.tempoLampada[indice] == 0 || estado.tempoLampada[indice] == "" || estado.tempoLampada[indice] == undefined || estado.tempoLampada[indice] == null) {
+                estado.tempoLampada[indice] = 1
+            }
+        }
+
+        if (funcao !=4 && funcao !=5 && funcao!=6){
+            alert("entrou")
+             clearTimeout(estado[`temporizadorAtual_${indice}`]);
+        clearInterval(estado[`intervaloCronometro_${indice}`]);
         estado.funcao[indice] = funcao;
-        estado.lamp[indice] = false; // Desliga o canal ao trocar de função
-        atualizarVisualLampada(indice);
         esconderCronometro(indice); // Esconde o cronômetro ao trocar de função
+        // Desliga a lâmpada associada ao canal
+        if (estado.lamp[indice] == 1) {
+            estado.lamp[indice] = 0;
+            tocarSom()
+        }
+        let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
+        if (funcao == 3 || funcao == 7) {
+            esconderCronometro(par); // Esconde o cronômetro ao trocar de função
+            estado.funcao[par] = funcao
+            if (estado.lamp[par] == 1) {
+                estado.lamp[par] = 0;
+                tocarSom()
+            }
+        }
+
 
         // Verifica se a função anterior era "Nível" ou "Reversão"
         if (estado.funcao[par] === 3 || estado.funcao[par] === 7) {
             if (funcao !== 3 && funcao !== 7) {
                 // Se o novo modo não é "Nível" ou "Reversão", redefine o par para "Normal"
                 estado.funcao[par] = 0;
-                estado.lamp[par] = false;
-                atualizarVisualLampada(par);
+                if (estado.lamp[par] == 1) {
+                    estado.lamp[par] = 0;
+                    tocarSom()
+                }
                 esconderCronometro(par); // Esconde o cronômetro do par ao redefinir para "Normal"
             }
         }
 
-
+        atualizarTodasLampadas()
+        }
+       
         switch (funcao) {
-            case 0:
-                configurarModoNormal(indice);
-                break;
-            case 1:
-                configurarModoTimerminutos(indice);
-                break;
-            case 2:
-                configurarModoTimersegundos(indice);
-                break;
-            case 3:
-                configurarModoNivel(indice);
-                break;
+            // case 0:
+            //     configurarModoNormal(indice);
+            //     break;
+            // case 1:
+            //     configurarModoTimer(indice);
+            //     break;
+            // case 2:
+            //     configurarModoTimer(indice);
+            //     break;
+            // case 3:
+            //     configurarModoNivel(indice);
+            //     break;
             case 4:
-                configurarModoDeteccao(indice);
+                construcao(indice)
+                // configurarModoDeteccao(indice);
                 break;
             case 5:
-                configurarModoRetencao(indice);
+                construcao(indice)
+                // configurarModoRetencao(indice);
                 break;
             case 6:
-                configurarModoContatora(indice);
+                construcao(indice)
+                // configurarModoContatora(indice);
                 break;
             case 7:
                 configurarModoReversao(indice);
                 break;
-            case 8:
-                configurarModoRetardoMinutos(indice);
-                break;
-            case 9:
-                configurarModoRetardoSegundos(indice);
-                break;
+            // case 8:
+            //     configurarModoRetardoMinutos(indice);
+            //     break;
+            // case 9:
+            //     configurarModoRetardoSegundos(indice);
+            //     break;
             default:
                 break;
         }
@@ -318,31 +318,34 @@ function configurarBotoes() {
                             executarModoNormal(i);
                             break;
                         case 1:
-                            executarModoTimerminutos(i);
+                            executarModoTimer(i, 'minutos');
                             break;
                         case 2:
-                            executarModoTimersegundos(i);
+                            executarModoTimer(i, 'segundos');
                             break;
                         case 3:
                             executarModoNivel(i);
                             break;
                         case 4:
-                            executarModoDeteccao(i);
+                            construcao(i)
+                            // executarModoDeteccao(i);
                             break;
                         case 5:
-                            executarModoRetencao(i);
+                            construcao(i)
+                            // executarModoRetencao(i);
                             break;
                         case 6:
-                            executarModoContatora(i);
+                            construcao(i)
+                            // executarModoContatora(i);
                             break;
                         case 7:
                             executarModoReversao(i);
                             break;
                         case 8:
-                            executarModoRetardoMinutos(i);
+                            executarModoRetardo(i, 'minutos');
                             break;
                         case 9:
-                            executarModoRetardoSegundos(i);
+                            executarModoRetardo(i, 'segundos');
                             break;
                         default:
                             break;
@@ -387,42 +390,14 @@ function configurarBotoes() {
     }
 }
 
-// Função para configurar o modo Normal
-function configurarModoNormal(indice) {
-    estado.funcao[indice] = 0; // Define o modo Normal
 
-    // Desliga a lâmpada associada ao canal
-    estado.lamp[indice] = false;
 
-    // Cancela qualquer temporizador ou cronômetro ativo associado ao canal
-    clearTimeout(estado[`temporizadorAtual_${indice}`]);
-    clearInterval(estado[`intervaloCronometro_${indice}`]);
+function construcao(indice){
+     alert("Em construção, logo disponível.");
 
-    // Remove eventos onmousedown e onmouseup que possam estar associados ao canal
-    let botao = document.getElementById(`bot${indice + 1}`);
-    botao.onmousedown = null;
-    botao.onmouseup = null;
-
-    // Garantir que não há eventos de clique ainda associados ao botão
-    botao.replaceWith(botao.cloneNode(true));
-    botao = document.getElementById(`bot${indice + 1}`);
-
-    // Redefine o evento de clique padrão para o modo Normal
-    botao.addEventListener('click', function () {
-        executarModoNormal(indice);
-    });
-
-    // Zera o tempo configurado para o canal
-    estado.tempoLampada[indice] = 0;
-
-    // Esconde o cronômetro, caso esteja ativo
-    esconderCronometro(indice);
-
-    // Atualiza a visualização do LED para garantir que esteja desligado
-    atualizarVisualLampada(indice);
 }
 
-// Função para executar o modo Normal
+
 function executarModoNormal(indice) {
     // Alterna o estado da lâmpada
     estado.lamp[indice] = !estado.lamp[indice];
@@ -433,33 +408,17 @@ function executarModoNormal(indice) {
 
 
 
-
-
-function configurarModoTimerminutos(indice) {
-    estado.funcao[indice] = 1;
-    estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-    if (estado.tempoLampada[indice] == 0) {
-        estado.tempoLampada[indice] = 1
-    }
-    atualizarVisualLampada(indice);
-    esconderCronometro(indice)
-}
-
-
-
-
-// Função para executar o modo Timer Minutos
-function executarModoTimerminutos(indice) {
+// Função genérica para executar o modo Timer (minutos ou segundos)
+function executarModoTimer(indice, unidade) {
     if (!estado.lamp[indice]) {
         // Se a lâmpada está desligada, liga e inicia o timer
-        clearTimeout(estado.temporizadorAtual); // Cancela o temporizador
-        estado.lamp[indice] = true;
+        clearTimeout(estado[`temporizadorAtual_${indice}`]); // Cancela o temporizador anterior
+        estado.lamp[indice] = true
         atualizarVisualLampada(indice);
         tocarSom();
+        const duracao = estado.tempoLampada[indice] * ((unidade === 'minutos') ? 60 * 1000 : 1000);
 
-        const duracao = estado.tempoLampada[indice] * 60 * 1000;
-
-        estado.temporizadorAtual = setTimeout(function () {
+        estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
             estado.lamp[indice] = false;
             atualizarVisualLampada(indice);
             tocarSom();
@@ -470,7 +429,7 @@ function executarModoTimerminutos(indice) {
     } else {
         // Se a lâmpada está ligada, desliga e esconde o cronômetro
         estado.lamp[indice] = false;
-        clearTimeout(estado.temporizadorAtual); // Cancela o temporizador
+        clearTimeout(estado[`temporizadorAtual_${indice}`]); // Cancela o temporizador
         atualizarVisualLampada(indice);
         tocarSom();
         esconderCronometro(indice);
@@ -479,153 +438,39 @@ function executarModoTimerminutos(indice) {
 
 
 
-
-// Função para configurar o modo Timer Segundos
-function configurarModoTimersegundos(indice) {
-    estado.funcao[indice] = 2;
-    estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-    if (estado.tempoLampada[indice] == 0) {
-        estado.tempoLampada[indice] = 1
-    }
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice)
-}
-
-
-
-
-// Função para executar o modo Timer Segundos
-function executarModoTimersegundos(indice) {
-    if (!estado.lamp[indice]) {
-        clearTimeout(estado.temporizadorAtual); // Cancela o temporizador
-        // Se a lâmpada está desligada, liga e inicia o timer
-        estado.lamp[indice] = true;
-        atualizarVisualLampada(indice);
-        tocarSom();
-
-        const duracao = estado.tempoLampada[indice] * 1000;
-
-        estado.temporizadorAtual = setTimeout(function () {
-            estado.lamp[indice] = false;
-            atualizarVisualLampada(indice);
-            tocarSom();
-            esconderCronometro(indice);
-        }, duracao);
-
-        mostrarCronometro(indice, duracao); // Mostra o cronômetro na tela
-    } else {
-        // Se a lâmpada está ligada, desliga e esconde o cronômetro
-        estado.lamp[indice] = false;
-        clearTimeout(estado.temporizadorAtual); // Cancela o temporizador
-        atualizarVisualLampada(indice);
-        tocarSom();
-        esconderCronometro(indice);
-    }
-}
-
-
-
-
-
-
-// Função para configurar o modo Retardo Minutos
-function configurarModoRetardoMinutos(indice) {
-    estado.funcao[indice] = 8;
-    estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-    if (estado.tempoLampada[indice] == 0) {
-        estado.tempoLampada[indice] = 1
-    }
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice)
-}
 
 // Função para executar o modo Retardo Minutos
-function executarModoRetardoMinutos(indice) {
+function executarModoRetardo(indice, unidade) {
     if (!estado.lamp[indice]) {
         // Cancela qualquer timeout e intervalo anterior
-        clearTimeout(estado.temporizadorAtual);
-        clearInterval(estado.intervaloCronometro);
+        clearTimeout(estado[`temporizadorAtual_${indice}`]); // Cancela o temporizador
 
         // Inicia o retardo
-        const duracao = estado.tempoLampada[indice] * 60 * 1000;
+        const duracao = estado.tempoLampada[indice] * ((unidade === 'minutos') ? 60 * 1000 : 1000);
+        estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
+            estado.lamp[indice] = true;
+            atualizarVisualLampada(indice);
+            tocarSom();
+            esconderCronometro(indice);
+        }, duracao);
 
         // Mostrar o cronômetro
         mostrarCronometro(indice, duracao);
 
-        // Define um novo timeout para ligar a lâmpada após o retardo
-        estado.temporizadorAtual = setTimeout(function () {
-            estado.lamp[indice] = true;
-            atualizarVisualLampada(indice);
-            tocarSom();
-            esconderCronometro(indice); // Esconde o cronômetro após ligar a lâmpada
-        }, duracao);
-
     } else {
         // Se a lâmpada está ligada, desliga e cancela o temporizador e o cronômetro
         estado.lamp[indice] = false;
-        clearTimeout(estado.temporizadorAtual);
-        clearInterval(estado.intervaloCronometro);
+        clearTimeout(estado[`temporizadorAtual_${indice}`]); // Cancela o temporizador
         atualizarVisualLampada(indice);
-        tocarSom();
         esconderCronometro(indice);
     }
 }
 
-// Função para configurar o modo Retardo Segundos
-function configurarModoRetardoSegundos(indice) {
-    estado.funcao[indice] = 9;
-    estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-    if (estado.tempoLampada[indice] == 0) {
-        estado.tempoLampada[indice] = 1
-    }
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice)
-}
-
-// Função para executar o modo Retardo Segundos
-function executarModoRetardoSegundos(indice) {
-    if (!estado.lamp[indice]) {
-        // Cancela qualquer timeout e intervalo anterior
-        clearTimeout(estado.temporizadorAtual);
-        clearInterval(estado.intervaloCronometro);
-
-        // Inicia o retardo
-        const duracao = estado.tempoLampada[indice] * 1000;
-
-        // Mostrar o cronômetro
-        mostrarCronometro(indice, duracao);
-
-        // Define um novo timeout para ligar a lâmpada após o retardo
-        estado.temporizadorAtual = setTimeout(function () {
-            estado.lamp[indice] = true;
-            atualizarVisualLampada(indice);
-            tocarSom();
-            esconderCronometro(indice); // Esconde o cronômetro após ligar a lâmpada
-        }, duracao);
-
-    } else {
-        // Se a lâmpada está ligada, desliga e cancela o temporizador e o cronômetro
-        estado.lamp[indice] = false;
-        clearTimeout(estado.temporizadorAtual);
-        clearInterval(estado.intervaloCronometro);
-        atualizarVisualLampada(indice);
-        tocarSom();
-        esconderCronometro(indice);
-    }
-}
 
 
 
 /// Função para configurar o modo Retenção
 function configurarModoRetencao(indice) {
-    estado.funcao[indice] = 5;
-    estado.lamp[indice] = false; // Inicialmente, a lâmpada está desligada
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice);
 
     // Ativando eventos específicos de Retenção
     let botao = document.getElementById(`bot${indice + 1}`);
@@ -672,19 +517,46 @@ function executarModoRetencao(indice) {
 /// Função para configurar o modo Detecção
 function configurarModoDeteccao(indice) {
     estado.funcao[indice] = 4;
-    estado.lamp[indice] = false; // Inicialmente, a lâmpada está desligada
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice);
+    let botao = document.getElementById(`bot${indice + 1}`);
 
-    // Verifica se o botão está pressionado no momento da configuração
-    const botao = document.getElementById(`bot${indice + 1}`);
-    if (botao.matches(':active')) {
-        estado.lamp[indice] = false; // Desliga a lâmpada se o botão está pressionado
+    // Remove eventos antigos
+    botao.replaceWith(botao.cloneNode(true));
+    botao = document.getElementById(`bot${indice + 1}`);
+
+    // Configura os eventos específicos de detecção
+    botao.addEventListener('mousedown', function () {
+        clearTimeout(estado[`temporizadorAtual_${indice}`]);
+        clearInterval(estado[`intervaloCronometro_${indice}`]);
+
+        estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão estiver pressionado
         atualizarVisualLampada(indice);
         tocarSom();
-    }
+        esconderCronometro(indice);
+    });
+
+    botao.addEventListener('mouseup', function () {
+        clearTimeout(estado[`temporizadorAtual_${indice}`]);
+        clearInterval(estado[`intervaloCronometro_${indice}`]);
+
+        const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
+
+        if (duracao > 0) {
+            mostrarCronometro(indice, duracao);
+
+            estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
+                estado.lamp[indice] = true;
+                atualizarVisualLampada(indice);
+                tocarSom();
+                esconderCronometro(indice);
+            }, duracao);
+        } else {
+            estado.lamp[indice] = true;
+            atualizarVisualLampada(indice);
+            tocarSom();
+        }
+    });
 }
+
 
 
 // Função para configurar o modo Detecção
@@ -803,22 +675,21 @@ function executarModoDeteccao(indice) {
 
 
 // Função para configurar o modo Nível
-function configurarModoNivel(indice) {
-    estado.funcao[indice] = 3;
-    estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-    atualizarVisualLampada(indice);
-    tocarSom();
-    esconderCronometro(indice);
+// function configurarModoNivel(indice) {
+// estado.funcao[indice] = 3;
+// estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
+// atualizarVisualLampada(indice);
+// esconderCronometro(indice);
 
-    // Identifica o par correspondente
-    let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
+// Identifica o par correspondente
+// let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
 
-    // Configura automaticamente o par para o modo nível
-    estado.funcao[par] = 3;
-    estado.lamp[par] = false; // Desliga a lâmpada do par
-    atualizarVisualLampada(par);
-    tocarSom();
-}
+// Configura automaticamente o par para o modo nível
+// estado.funcao[par] = 3;
+// estado.lamp[par] = false; // Desliga a lâmpada do par
+// atualizarVisualLampada(par);
+
+// }
 
 
 // Função para executar o modo Nível
@@ -827,16 +698,28 @@ function executarModoNivel(indice) {
     let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
 
     if (indice % 2 === 0) { // Porta Par (Liga ambos os LEDs)
-        estado.lamp[indice] = false; // Desliga a lâmpada da porta par
-        estado.lamp[par] = false; // Desliga a lâmpada do par correspondente
+        if (estado.lamp[indice] == 1) {
+            estado.lamp[indice] = false; // Desliga a lâmpada da porta par
+            estado.lamp[par] = false; // Desliga a lâmpada do par correspondente
+            atualizarVisualLampada(indice);
+            atualizarVisualLampada(par);
+            tocarSom();
+        }
+
     } else { // Porta Ímpar (Desliga ambos os LEDs)
-        estado.lamp[indice] = true; // liga a lâmpada da porta ímpar
-        estado.lamp[par] = true; // liga a lâmpada do par correspondente
+        if (estado.lamp[indice] == 0) {
+            estado.lamp[indice] = true; // liga a lâmpada da porta ímpar
+            estado.lamp[par] = true; // liga a lâmpada do par correspondente
+            atualizarVisualLampada(indice);
+            atualizarVisualLampada(par);
+            tocarSom();
+        }
+
     }
-    atualizarVisualLampada(indice);
-    tocarSom();
-    atualizarVisualLampada(par);
-    tocarSom();
+
+
+
+
 }
 
 
@@ -965,11 +848,13 @@ function configurarModal() {
 
 
 
+// Abertura do modal
 function abrirModal(indice) {
     const modal = document.getElementById("functionModal");
     modal.setAttribute('data-channel', indice);
     modal.style.display = "block";
 }
+
 
 
 
