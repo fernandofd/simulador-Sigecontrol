@@ -83,6 +83,12 @@ function alternarLEDPower(ativo) {
 
 // rst básico, somente deliga tudo mas não perde as configurações
 function rst() {
+    for (let index = 0; index < estado.lamp.length; index++) {
+       if(estado.lamp[index]==1){
+        index= estado.lamp.length
+        tocarSom()
+       }
+    }
     estado.lamp.fill(false);
     atualizarTodasLampadas();
     esconderTodosCronometros(); // Esconde todos os cronômetros ao resetar tudo
