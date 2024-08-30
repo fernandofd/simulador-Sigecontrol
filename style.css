@@ -511,9 +511,15 @@ select#functionSelect {
    
         }
 
-        th, td {
-            border: 1px solid #fff;
+        th{
+             border: 1px solid #fff;
             text-align: center;
+        }
+
+         td {
+            border: 1px solid #fff;
+            text-align: left;
+            padding-left: 0.5%;
         }
 
       
