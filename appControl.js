@@ -863,12 +863,12 @@ function iniciarContagemRegressiva(indice, duracao, acaoFinal) {
     let tempoRestante = duracao;
 
     display.style.display = 'block'; // Mostra o cronômetro na tela
-    display.textContent = `${tempoRestante} s`;
+    display.textContent = `${tempoRestante}`;
 
     const intervalo = setInterval(() => {
         tempoRestante--;
         if (tempoRestante > 0) {
-            display.textContent = `${tempoRestante} s`;
+            display.textContent = `${tempoRestante}`;
         } else {
             clearInterval(intervalo);
             display.style.display = 'none'; // Oculta o cronômetro ao finalizar a contagem
@@ -886,7 +886,7 @@ function mostrarCronometro(indice, duracao) {
     let tempoRestante = duracao / 1000;
 
     display.style.display = 'block';
-    display.textContent = `${tempoRestante} s`;
+    display.textContent = `${tempoRestante}`;
 
     // Cancela qualquer cronômetro anterior para este índice
     clearInterval(estado[`intervaloCronometro_${indice}`]);
@@ -895,7 +895,7 @@ function mostrarCronometro(indice, duracao) {
     const intervalo = setInterval(() => {
         tempoRestante--;
         if (tempoRestante > 0) {
-            display.textContent = `${tempoRestante} s`;
+            display.textContent = `${tempoRestante}`;
         } else {
             clearInterval(intervalo);
             display.style.display = 'none';

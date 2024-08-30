@@ -484,22 +484,20 @@ select#functionSelect {
     position: absolute;
     text-align: center;
     color: white;
-    font-size: 12px;
-    background-color: rgba(0, 0, 0, 1); /* Cor de fundo semitransparente para contraste */
-    border-radius: 5px;
-    padding: 3px;
+    font-size: 1.5vw;
     display: none; /* Ocultar inicialmente */
+
 }
 
 /* Ajuste as posições conforme necessário para cada display de timer */
-#timerDisplay1 { top: 12%; left: 31%; }
-#timerDisplay2 { top: 12%; left: 39%; }
-#timerDisplay3 { top: 12%; left: 47%; }
-#timerDisplay4 { top: 12%; left: 55%; }
-#timerDisplay5 { top: 12%; left: 62.5%; }
-#timerDisplay6 { top: 12%; left: 70.5%; }
-#timerDisplay7 { top: 12%; left: 78%; }
-#timerDisplay8 { top: 12%; left: 86%; }
+#timerDisplay1 { top: 19%; left: 31%; }
+#timerDisplay2 { top: 19%; left: 39%; }
+#timerDisplay3 { top: 19%; left: 47%; }
+#timerDisplay4 { top: 19%; left: 54.7%; }
+#timerDisplay5 { top: 19%; left: 62.5%; }
+#timerDisplay6 { top: 19%; left: 70.4%; }
+#timerDisplay7 { top: 19%; left: 78%; }
+#timerDisplay8 { top: 19%; left: 86%; }
 
 
  table {
