@@ -227,7 +227,6 @@ function definirFuncao(indice, funcao) {
         }
 
         if (funcao !=4 && funcao !=5 && funcao!=6){
-            alert("entrou")
              clearTimeout(estado[`temporizadorAtual_${indice}`]);
         clearInterval(estado[`intervaloCronometro_${indice}`]);
         estado.funcao[indice] = funcao;
