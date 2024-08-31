@@ -8,7 +8,8 @@ var estado = {
     simuladorLigado: false,
     lamp: [false, false, false, false, false, false, false, false],
     funcao: [0, 0, 0, 0, 0, 0, 0, 0],
-    tempoLampada: [0, 0, 0, 0, 0, 0, 0, 0]
+    tempoLampada: [0, 0, 0, 0, 0, 0, 0, 0],
+    botao: []
 };
 
 
@@ -223,8 +224,99 @@ function atualizarVisualLampada(indice) {
     tempoElement.textContent = `${estado.tempoLampada[indice]} s`;
 }
 
+
+
+
+
+
+function deteccaoMouseDown(indice) {
+    console.log("%c[deteccaoMouseDown] índice: ", "color: green", indice);
+
+    clearTimeout(estado[`temporizadorAtual_${indice}`]);
+    clearInterval(estado[`intervaloCronometro_${indice}`]);
+
+    estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão está pressionado
+    atualizarVisualLampada(indice);
+    tocarSom();
+    esconderCronometro(indice);
+}
+
+function deteccaoMouseUp(indice) {
+    console.log("%c[deteccaoMouseUp] índice: ", "color: green", indice);
+
+    clearTimeout(estado[`temporizadorAtual_${indice}`]);
+    clearInterval(estado[`intervaloCronometro_${indice}`]);
+
+    const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
+
+    if (duracao > 0) {
+        mostrarCronometro(indice, duracao);
+
+        estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
+            estado.lamp[indice] = true;
+            atualizarVisualLampada(indice);
+            tocarSom();
+            esconderCronometro(indice);
+        }, duracao);
+    } else {
+        estado.lamp[indice] = true;
+        atualizarVisualLampada(indice);
+        tocarSom();
+    }
+}
+
+function executarModoDeteccao(indice) {
+    let botaoNovo = document.getElementById(`bot${indice + 1}`);
+
+    // Limpa eventos anteriores antes de adicionar novos
+    botaoNovo.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+    botaoNovo.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+
+    // Define os novos eventos
+    const mouseDownHandler = () => deteccaoMouseDown(indice);
+    const mouseUpHandler = () => deteccaoMouseUp(indice);
+
+    // Armazena os eventos no estado para poder removê-los posteriormente
+    estado[`mousedownHandler_${indice}`] = mouseDownHandler;
+    estado[`mouseupHandler_${indice}`] = mouseUpHandler;
+
+    // Adiciona os eventos ao botão
+    botaoNovo.addEventListener('mousedown', mouseDownHandler);
+    botaoNovo.addEventListener('mouseup', mouseUpHandler);
+}
+
+function limparEventosMouse(indice) {
+    let botao = document.getElementById(`bot${indice + 1}`);
+
+    // Verifica se os handlers estão presentes e os remove
+    if (estado[`mousedownHandler_${indice}`]) {
+        console.log(`Removendo mousedown para o botão ${indice + 1}`);
+        botao.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+        delete estado[`mousedownHandler_${indice}`];
+    }
+
+    if (estado[`mouseupHandler_${indice}`]) {
+        console.log(`Removendo mouseup para o botão ${indice + 1}`);
+        botao.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+        delete estado[`mouseupHandler_${indice}`];
+    }
+}
+
+
+
+
+
+
+
 function definirFuncao(indice, funcao) {
     if (estado.simuladorLigado) {
+
+
+        if (funcao !== 5 && funcao!==4) {
+            limparEventosMouse(indice);
+        }
+      
+
 
         if (funcao == 1 || funcao == 2 || funcao == 8 || funcao == 9) {
             if (estado.tempoLampada[indice] == 0 || estado.tempoLampada[indice] == "" || estado.tempoLampada[indice] == undefined || estado.tempoLampada[indice] == null) {
@@ -232,7 +324,7 @@ function definirFuncao(indice, funcao) {
             }
         }
 
-        if (funcao != 4 && funcao != 5 && funcao != 6) {
+        if ( funcao != 6) {
             clearTimeout(estado[`temporizadorAtual_${indice}`]);
             clearInterval(estado[`intervaloCronometro_${indice}`]);
             estado.funcao[indice] = funcao;
@@ -246,7 +338,7 @@ function definirFuncao(indice, funcao) {
             if (funcao == 3 || funcao == 7) {
                 esconderCronometro(par); // Esconde o cronômetro ao trocar de função
                 estado.funcao[par] = funcao
-                 estado.tempoLampada[par] = estado.tempoLampada[indice];
+                estado.tempoLampada[par] = estado.tempoLampada[indice];
                 if (estado.lamp[par] == 1) {
                     estado.lamp[par] = 0;
                     tocarSom()
@@ -270,43 +362,12 @@ function definirFuncao(indice, funcao) {
             atualizarTodasLampadas()
         }
 
-        switch (funcao) {
-            // case 0:
-            //     configurarModoNormal(indice);
-            //     break;
-            // case 1:
-            //     configurarModoTimer(indice);
-            //     break;
-            // case 2:
-            //     configurarModoTimer(indice);
-            //     break;
-            // case 3:
-            //     configurarModoNivel(indice);
-            //     break;
-            case 4:
+        if (funcao==6) {
                 construcao(indice)
-                // configurarModoDeteccao(indice);
-                break;
-            case 5:
-                construcao(indice)
-                // configurarModoRetencao(indice);
-                break;
-            case 6:
-                construcao(indice)
-                // configurarModoContatora(indice);
-                break;
-            // case 7:
-            //     configurarModoReversao(indice);
-            //     break;
-            // case 8:
-            //     configurarModoRetardoMinutos(indice);
-            //     break;
-            // case 9:
-            //     configurarModoRetardoSegundos(indice);
-            //     break;
-            default:
-                break;
         }
+        if(funcao==4){
+            executarModoDeteccao(indice)
+            }
     } else {
         alert("O simulador está desligado.");
     }
@@ -316,6 +377,10 @@ function definirFuncao(indice, funcao) {
 function configurarBotoes() {
     for (let i = 0; i < 8; i++) {
         let botao = document.getElementById(`bot${i + 1}`);
+
+        console.log("%c[executarModoRetencao] target: ", "color: cyan", botao);
+
+
         if (botao) {
             botao.addEventListener('click', function () {
                 if (estado.simuladorLigado) {
@@ -333,12 +398,11 @@ function configurarBotoes() {
                             executarModoNivel(i);
                             break;
                         case 4:
-                            construcao(i)
-                            // executarModoDeteccao(i);
+                            executarModoDeteccao(i);
                             break;
                         case 5:
-                            construcao(i)
-                            // executarModoRetencao(i);
+                            // construcao(i)
+                            executarModoRetencao(i);
                             break;
                         case 6:
                             construcao(i)
@@ -398,8 +462,18 @@ function configurarBotoes() {
 
 
 
+
+
+
+
+
+
+
+
+
+
 function construcao(indice) {
-    alert("Em construção, logo disponível.");
+    alert("Em construção, Depende do simulador com o APP.");
 
 }
 
@@ -475,227 +549,59 @@ function executarModoRetardo(indice, unidade) {
 
 
 
-/// Função para configurar o modo Retenção
-function configurarModoRetencao(indice) {
-
-    // Ativando eventos específicos de Retenção
-    let botao = document.getElementById(`bot${indice + 1}`);
-
-    // Limpa qualquer evento antigo para evitar duplicação
-    botao.onmousedown = null;
-    botao.onmouseup = null;
-    botao.replaceWith(botao.cloneNode(true));
-    botao = document.getElementById(`bot${indice + 1}`);
-
-    // Reatribui eventos para Retenção
-    botao.addEventListener('mousedown', function () {
-        estado.lamp[indice] = true; // Liga a lâmpada enquanto o botão está pressionado
-        atualizarVisualLampada(indice);
-        tocarSom();
-    });
-
-    botao.addEventListener('mouseup', function () {
-        estado.lamp[indice] = false; // Desliga a lâmpada ao soltar o botão
-        atualizarVisualLampada(indice);
-        tocarSom();
-    });
-}
-
-
-function executarModoRetencao(indice) {
-    const botao = document.getElementById(`bot${indice + 1}`);
-
-    botao.addEventListener('mousedown', function () {
-        estado.lamp[indice] = true; // Liga a lâmpada enquanto o botão está pressionado
-        atualizarVisualLampada(indice);
-        tocarSom();
-    });
-
-    botao.addEventListener('mouseup', function () {
-        estado.lamp[indice] = false; // Desliga a lâmpada ao soltar o botão
-        atualizarVisualLampada(indice);
-        tocarSom();
-    });
-}
-
-
-
-/// Função para configurar o modo Detecção
-function configurarModoDeteccao(indice) {
-    estado.funcao[indice] = 4;
-    let botao = document.getElementById(`bot${indice + 1}`);
-
-    // Remove eventos antigos
-    botao.replaceWith(botao.cloneNode(true));
-    botao = document.getElementById(`bot${indice + 1}`);
-
-    // Configura os eventos específicos de detecção
-    botao.addEventListener('mousedown', function () {
-        clearTimeout(estado[`temporizadorAtual_${indice}`]);
-        clearInterval(estado[`intervaloCronometro_${indice}`]);
-
-        estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão estiver pressionado
-        atualizarVisualLampada(indice);
-        tocarSom();
-        esconderCronometro(indice);
-    });
-
-    botao.addEventListener('mouseup', function () {
-        clearTimeout(estado[`temporizadorAtual_${indice}`]);
-        clearInterval(estado[`intervaloCronometro_${indice}`]);
-
-        const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
-
-        if (duracao > 0) {
-            mostrarCronometro(indice, duracao);
-
-            estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
-                estado.lamp[indice] = true;
-                atualizarVisualLampada(indice);
-                tocarSom();
-                esconderCronometro(indice);
-            }, duracao);
-        } else {
-            estado.lamp[indice] = true;
-            atualizarVisualLampada(indice);
-            tocarSom();
-        }
-    });
-}
-
-
-
-// Função para configurar o modo Detecção
-function configurarModoDeteccao(indice) {
-    estado.funcao[indice] = 4;
-    estado.lamp[indice] = false; // Inicialmente, a lâmpada está desligada
+function retencaoMouseDown(indice) {
+    console.log("%c[retencaoMouseDown] indice: ", "color: blue", indice);
+    estado.lamp[indice] = true; // Liga a lâmpada enquanto o botão está pressionado
     atualizarVisualLampada(indice);
     tocarSom();
-    esconderCronometro(indice);
-
-    // Reativar os eventos específicos de Detecção
-    reativarEventosDeteccao(indice);
 }
 
-// Função para reativar os eventos de detecção
-function reativarEventosDeteccao(indice) {
+function retencaoMouseUp(indice) {
+    console.log("%c[retencaoMouseUp] indice: ", "color: blue", indice);
+    estado.lamp[indice] = false; // Desliga a lâmpada ao soltar o botão
+    atualizarVisualLampada(indice);
+    tocarSom();
+}
+
+function executarModoRetencao(indice) {
     let botao = document.getElementById(`bot${indice + 1}`);
 
-    // Limpa qualquer evento antigo para evitar duplicação
-    botao.onmousedown = null;
-    botao.onmouseup = null;
-    botao.replaceWith(botao.cloneNode(true));
-    botao = document.getElementById(`bot${indice + 1}`);
+    // Limpa eventos anteriores antes de adicionar novos
+    botao.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+    botao.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
 
-    // Reatribui eventos para Detecção
-    botao.addEventListener('mousedown', function () {
-        clearTimeout(estado[`temporizadorAtual_${indice}`]);
-        clearInterval(estado[`intervaloCronometro_${indice}`]);
+    // Define os novos eventos
+    const mouseDownHandler = () => retencaoMouseDown(indice);
+    const mouseUpHandler = () => retencaoMouseUp(indice);
 
-        estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão estiver pressionado
-        atualizarVisualLampada(indice);
-        tocarSom();
-        esconderCronometro(indice);
-    });
+    // Armazena os eventos no estado para poder removê-los posteriormente
+    estado[`mousedownHandler_${indice}`] = mouseDownHandler;
+    estado[`mouseupHandler_${indice}`] = mouseUpHandler;
 
-    botao.addEventListener('mouseup', function () {
-        clearTimeout(estado[`temporizadorAtual_${indice}`]);
-        clearInterval(estado[`intervaloCronometro_${indice}`]);
-
-        const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
-
-        if (duracao > 0) {
-            mostrarCronometro(indice, duracao);
-
-            estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
-                estado.lamp[indice] = true;
-                atualizarVisualLampada(indice);
-                tocarSom();
-                esconderCronometro(indice);
-            }, duracao);
-        } else {
-            estado.lamp[indice] = true;
-            atualizarVisualLampada(indice);
-            tocarSom();
-        }
-    });
-
-    // Verificação contínua para o estado do botão
-    verificarEstadoBotao(indice);
-}
-
-// Função para verificar o estado do botão continuamente
-function verificarEstadoBotao(indice) {
-    let botao = document.getElementById(`bot${indice + 1}`);
-    let mouseSobreBotao = false;
-
-    // Evento para verificar se o mouse está sobre o botão
-    botao.addEventListener('mouseenter', function () {
-        mouseSobreBotao = true;
-    });
-
-    botao.addEventListener('mouseleave', function () {
-        mouseSobreBotao = false;
-    });
-
-    // Verifica se o botão está pressionado e se o mouse está sobre a div
-    estado[`intervaloVerificacao_${indice}`] = setInterval(() => {
-        if (!botao.matches(':active') && !mouseSobreBotao) {
-            // Se o botão não está pressionado e o mouse não está sobre o botão
-            iniciarDeteccao(indice);
-            clearInterval(estado[`intervaloVerificacao_${indice}`]); // Para a verificação contínua
-        }
-    }, 100); // Verifica o estado do botão a cada 100ms
-}
-
-// Função para iniciar a lógica de detecção
-function iniciarDeteccao(indice) {
-    clearTimeout(estado[`temporizadorAtual_${indice}`]);
-    clearInterval(estado[`intervaloCronometro_${indice}`]);
-
-    const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
-
-    if (duracao > 0) {
-        mostrarCronometro(indice, duracao);
-
-        estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
-            estado.lamp[indice] = true;
-            atualizarVisualLampada(indice);
-            tocarSom();
-            esconderCronometro(indice);
-        }, duracao);
-    } else {
-        estado.lamp[indice] = true;
-        atualizarVisualLampada(indice);
-        tocarSom();
-    }
-}
-
-// Função para executar o modo Detecção
-function executarModoDeteccao(indice) {
-    reativarEventosDeteccao(indice);
+    // Adiciona os eventos ao botão
+    botao.addEventListener('mousedown', mouseDownHandler);
+    botao.addEventListener('mouseup', mouseUpHandler);
 }
 
 
 
 
 
-// Função para configurar o modo Nível
-// function configurarModoNivel(indice) {
-// estado.funcao[indice] = 3;
-// estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-// atualizarVisualLampada(indice);
-// esconderCronometro(indice);
 
-// Identifica o par correspondente
-// let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
 
-// Configura automaticamente o par para o modo nível
-// estado.funcao[par] = 3;
-// estado.lamp[par] = false; // Desliga a lâmpada do par
-// atualizarVisualLampada(par);
 
-// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Função para executar o modo Nível
