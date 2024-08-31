@@ -66,12 +66,11 @@ function alternarSimulador(ativo) {
     estado.simuladorLigado = ativo;
     alternarLEDPower(ativo); // Liga ou desliga o LED de power
 
-    // Seleciona todas as divs de lâmpadas e interruptores
     const lampadas = document.querySelectorAll('.lampada');
     const inputs = document.querySelectorAll('.input');
-    const controlButtons = document.querySelector('.control-buttons'); // Seleciona a div de botões de controle
+    const controlButtons = document.querySelector('.control-buttons');
+    const placa = document.getElementById('sigeImage'); // Seleciona a imagem da placa
 
-    // Mostra ou esconde as divs conforme o estado do simulador
     lampadas.forEach(lampada => {
         lampada.style.display = ativo ? 'block' : 'none';
     });
@@ -80,16 +79,22 @@ function alternarSimulador(ativo) {
         input.style.display = ativo ? 'block' : 'none';
     });
 
-    // Mostra ou esconde os botões de controle conforme o estado do simulador
     controlButtons.style.display = ativo ? 'flex' : 'none';
 
+    // Aplica ou remove a classe ofuscado na imagem da placa
+    if (ativo) {
+        placa.classList.remove('ofuscado');
+    } else {
+        placa.classList.add('ofuscado');
+    }
+
     if (!ativo) {
-        // Apenas desliga as lâmpadas, mas mantém as configurações em memória
         estado.lamp.fill(false);
         atualizarTodasLampadas();
-        esconderTodosCronometros(); // Esconde todos os cronômetros ao desligar o simulador
+        esconderTodosCronometros();
     }
 }
+
 
 
 

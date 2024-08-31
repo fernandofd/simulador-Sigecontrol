@@ -660,3 +660,10 @@ td {
 #inp3 {top: 55%; right:10%;}
 #inp2 {top: 65%; right:10%;}
 #inp1 {top: 75%; right:10%;}
+
+
+.ofuscado {
+    filter: blur(5px); /* Aplica um desfoque de 5px */
+    opacity: 0.5; /* Reduz a opacidade para 50% */
+    transition: filter 0.5s ease, opacity 0.5s ease; /* Adiciona uma transição suave */
+}
