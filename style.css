@@ -14,6 +14,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .cabecalho {
     width: 100%;
     height: 10%;
@@ -21,7 +22,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content:space-around;
+    justify-content: space-around;
 
 }
 
@@ -45,7 +46,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
+
 
 }
 
@@ -58,19 +59,21 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-      background-color: #17212f;
-      backdrop-filter: blur(10px); /* Efeito de desfocamento */
+    background-color: #17212f;
+
+    backdrop-filter: blur(10px);
+    /* Efeito de desfocamento */
 }
 
 .control-buttons {
     position: relative;
-    width:15%;
-    height:100%;
+    width: 15%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     /* background-color: #1f2d40; */
- 
+
 }
 
 .control-btn {
@@ -86,7 +89,8 @@ main {
 }
 
 .control-btn:hover {
-    background-color: #45a049; /* Um tom mais escuro de verde no hover */
+    background-color: #45a049;
+    /* Um tom mais escuro de verde no hover */
 }
 
 
@@ -101,17 +105,18 @@ main {
     justify-content: center;
     align-items: center;
     width: 50%;
-   
+
 }
 
 
 
-.logo{
+.logo {
     width: 7%;
     height: 80%;
-   
+
 }
-.h1simulador{
+
+.h1simulador {
     color: white;
     font-size: 150%;
 
@@ -124,7 +129,8 @@ main {
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 60px; /* Largura ajustada para ser mais compacta */
+    width: 60px;
+    /* Largura ajustada para ser mais compacta */
     height: 24px;
     background-color: #ccc;
     border-radius: 12px;
@@ -132,7 +138,8 @@ main {
     padding: 0;
 }
 
-.toggle-switch .on, .toggle-switch .off {
+.toggle-switch .on,
+.toggle-switch .off {
     color: white;
     font-size: 12px;
     position: absolute;
@@ -142,31 +149,41 @@ main {
 }
 
 .toggle-switch .on {
-    left: 100%; /* Posiciona à direita do toggle */
-    margin-left: 8px; /* Ajuste para alinhamento */
-    opacity: 0; /* Inicialmente escondido */
+    left: 100%;
+    /* Posiciona à direita do toggle */
+    margin-left: 8px;
+    /* Ajuste para alinhamento */
+    opacity: 0;
+    /* Inicialmente escondido */
 }
 
 .toggle-switch .off {
-    right: 100%; /* Posiciona à esquerda do toggle */
-    margin-right: 8px; /* Ajuste para alinhamento */
-    opacity: 1; /* Inicialmente visível */
+    right: 100%;
+    /* Posiciona à esquerda do toggle */
+    margin-right: 8px;
+    /* Ajuste para alinhamento */
+    opacity: 1;
+    /* Inicialmente visível */
 }
 
-input:checked + .toggle-label + .on {
-    opacity: 1; /* Mostra quando ligado */
+input:checked+.toggle-label+.on {
+    opacity: 1;
+    /* Mostra quando ligado */
 }
 
-input:checked + .toggle-label + .on + .off {
-    opacity: 0; /* Esconde quando ligado */
+input:checked+.toggle-label+.on+.off {
+    opacity: 0;
+    /* Esconde quando ligado */
 }
 
-input:not(:checked) + .toggle-label + .on {
-    opacity: 0; /* Esconde quando desligado */
+input:not(:checked)+.toggle-label+.on {
+    opacity: 0;
+    /* Esconde quando desligado */
 }
 
-input:not(:checked) + .toggle-label + .on + .off {
-    opacity: 1; /* Mostra quando desligado */
+input:not(:checked)+.toggle-label+.on+.off {
+    opacity: 1;
+    /* Mostra quando desligado */
 }
 
 .toggle-switch input[type="checkbox"] {
@@ -184,7 +201,7 @@ input:not(:checked) + .toggle-label + .on + .off {
     transition: transform 0.2s;
 }
 
-input:checked + .toggle-label {
+input:checked+.toggle-label {
     transform: translateX(26px);
     background-color: #4CAF50;
 }
@@ -345,8 +362,8 @@ input:checked + .toggle-label {
 }
 
 
-.rele-button{
-     position: absolute;
+.rele-button {
+    position: absolute;
     width: 6%;
     /* Define a largura do botão */
     height: 13%;
@@ -359,38 +376,46 @@ input:checked + .toggle-label {
     /* Suave transição de cor ao interagir */
 }
 
-#rele1{
-     top: 18.7%;
+#rele1 {
+    top: 18.7%;
     left: 31%;
 }
-#rele2{
-     top: 18.7%;
+
+#rele2 {
+    top: 18.7%;
     left: 39%;
 }
-#rele3{
-     top: 18.7%;
+
+#rele3 {
+    top: 18.7%;
     left: 47%;
 }
-#rele4{
-     top: 18.7%;
+
+#rele4 {
+    top: 18.7%;
     left: 55%;
 }
-#rele5{
-     top: 18.7%;
+
+#rele5 {
+    top: 18.7%;
     left: 62.5%;
 }
-#rele6{
-     top: 18.7%;
+
+#rele6 {
+    top: 18.7%;
     left: 70.5%;
 }
-#rele7{
-     top: 18.7%;
+
+#rele7 {
+    top: 18.7%;
     left: 78.4%;
 }
-#rele8{
-     top: 18.7%;
+
+#rele8 {
+    top: 18.7%;
     left: 86%;
 }
+
 /* Estilização para quando o botão é focado ou clicado */
 .rele-button:hover,
 .rele-button:active {
@@ -401,40 +426,52 @@ input:checked + .toggle-label {
 
 /* Estilo do Modal */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
-    z-index: 1; /* Certifique-se de que está acima de outros elementos */
+    z-index: 1;
+    /* Certifique-se de que está acima de outros elementos */
     left: 0;
     top: 0;
-    width: 100%; /* Cobrir a tela inteira */
-    height: 100%; /* Cobrir a tela inteira */
-    overflow: auto; /* Permitir rolagem se necessário */
-    background-color: rgba(0,0,0,0.4); /* Fundo escuro semitransparente */
+    width: 100%;
+    /* Cobrir a tela inteira */
+    height: 100%;
+    /* Cobrir a tela inteira */
+    overflow: auto;
+    /* Permitir rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fundo escuro semitransparente */
 }
 
-.timeInput{
+.timeInput {
     color: #aaaaaa;
     float: left;
     font-size: 14px;
-   
+
     cursor: pointer;
-     border-radius: 5px; /* Borda arredondada */
-     margin-top: 5px;
-      color: #000;
-      display:none;
+    border-radius: 5px;
+    /* Borda arredondada */
+    margin-top: 5px;
+    color: #000;
+    display: none;
 }
 
-h2{
+h2 {
     color: white;
 }
 
 .modal-content {
-    background-color: #17212f; /* Mesma cor do background do main */
-    margin: 10% auto; /* Centralizado verticalmente e com margem */
+    background-color: #17212f;
+    /* Mesma cor do background do main */
+    margin: 10% auto;
+    /* Centralizado verticalmente e com margem */
     padding: 20px;
-    border: 1px solid #888; /* Borda sutil */
-    width: 30%; /* Largura do conteúdo do modal */
-    border-radius: 10px; /* Borda arredondada */
+    border: 1px solid #888;
+    /* Borda sutil */
+    width: 30%;
+    /* Largura do conteúdo do modal */
+    border-radius: 10px;
+    /* Borda arredondada */
 }
 
 .close {
@@ -455,7 +492,8 @@ button#saveFunction {
     padding: 10px 20px;
     margin-left: 22%;
     margin-top: 10%;
-    background-color: #4CAF50; /* Verde para ação positiva */
+    background-color: #4CAF50;
+    /* Verde para ação positiva */
     color: white;
     border: none;
     border-radius: 5px;
@@ -464,7 +502,8 @@ button#saveFunction {
 }
 
 button#saveFunction:hover {
-    background-color: #45a049; /* Um tom mais escuro de verde no hover */
+    background-color: #45a049;
+    /* Um tom mais escuro de verde no hover */
 }
 
 /* Estilo do select */
@@ -485,39 +524,139 @@ select#functionSelect {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    display: none; /* Ocultar inicialmente */
+    display: none;
+    /* Ocultar inicialmente */
 
 }
 
 /* Ajuste as posições conforme necessário para cada display de timer */
-#timerDisplay1 { top: 19%; left: 31%; }
-#timerDisplay2 { top: 19%; left: 39%; }
-#timerDisplay3 { top: 19%; left: 47%; }
-#timerDisplay4 { top: 19%; left: 54.7%; }
-#timerDisplay5 { top: 19%; left: 62.5%; }
-#timerDisplay6 { top: 19%; left: 70.4%; }
-#timerDisplay7 { top: 19%; left: 78%; }
-#timerDisplay8 { top: 19%; left: 86%; }
+#timerDisplay1 {
+    top: 19%;
+    left: 31%;
+}
+
+#timerDisplay2 {
+    top: 19%;
+    left: 39%;
+}
+
+#timerDisplay3 {
+    top: 19%;
+    left: 47%;
+}
+
+#timerDisplay4 {
+    top: 19%;
+    left: 54.7%;
+}
+
+#timerDisplay5 {
+    top: 19%;
+    left: 62.5%;
+}
+
+#timerDisplay6 {
+    top: 19%;
+    left: 70.4%;
+}
+
+#timerDisplay7 {
+    top: 19%;
+    left: 78%;
+}
+
+#timerDisplay8 {
+    top: 19%;
+    left: 86%;
+}
 
 
- table {
-            width: 95%;
-            border-collapse: collapse;
-            color: white;
-             background-color: #091424;
-            
-   
-        }
+table {
+    width: 95%;
+    border-collapse: collapse;
+    color: white;
+    background-color: #091424;
 
-        th{
-             border: 1px solid #fff;
-            text-align: center;
-        }
 
-         td {
-            border: 1px solid #fff;
-            text-align: left;
-            padding-left: 0.5%;
-        }
+}
 
-      
+th {
+    border: 1px solid #fff;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #fff;
+    text-align: left;
+    padding-left: 0.5%;
+}
+
+
+
+
+
+
+
+.lampada {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 6%;
+    transform: rotate(-90deg); /* Gira 90 graus anti-horário */
+    display: none; 
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#lamp8 {top: 5%; left:6%;}
+#lamp7 {top: 15%; left:6%;}
+#lamp6 {top: 25%; left:6%;}
+#lamp5 {top: 35%; left:6%;}
+#lamp4 {top: 45%; left:6%;}
+#lamp3 {top: 55%; left:6%;}
+#lamp2 {top: 65%; left:6%;}
+#lamp1 {top: 75%; left:6%;}
+
+
+
+
+.timer-display-lamp {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    /* Ajuste a posição para ficar próxima às lâmpadas */
+}
+
+/* Exemplo de posicionamento para os cronômetros perto das lâmpadas */
+#timerDisplayLamp1 { top: 80%; left: 0%; }
+#timerDisplayLamp2 { top: 70%; left: 0%; }
+#timerDisplayLamp3 { top: 60%; left: 0%; }
+#timerDisplayLamp4 { top: 50%; left: 0%; }
+#timerDisplayLamp5 { top: 40%; left: 0%; }
+#timerDisplayLamp6 { top: 30%; left: 0%; }
+#timerDisplayLamp7 { top: 20%; left: 0%; }
+#timerDisplayLamp8 { top: 10%; left: 0%; }
+
+
+.input {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 4%;
+    transform: rotate(-90deg); /* Gira 90 graus anti-horário */
+    display: none; 
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#inp8 {top: 5%; right:10%;}
+#inp7 {top: 15%; right:10%;}
+#inp6 {top: 25%; right:10%;}
+#inp5 {top: 35%; right:10%;}
+#inp4 {top: 45%; right:10%;}
+#inp3 {top: 55%; right:10%;}
+#inp2 {top: 65%; right:10%;}
+#inp1 {top: 75%; right:10%;}

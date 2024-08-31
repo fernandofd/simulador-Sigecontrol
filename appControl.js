@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     configurarAlternancia();
+    alternarSimulador(estado.simuladorLigado); // Verifica o estado inicial do simulador
     configurarBotoes();
     configurarModal();
 });
@@ -64,6 +65,24 @@ function configurarAlternancia() {
 function alternarSimulador(ativo) {
     estado.simuladorLigado = ativo;
     alternarLEDPower(ativo); // Liga ou desliga o LED de power
+
+    // Seleciona todas as divs de lâmpadas e interruptores
+    const lampadas = document.querySelectorAll('.lampada');
+    const inputs = document.querySelectorAll('.input');
+    const controlButtons = document.querySelector('.control-buttons'); // Seleciona a div de botões de controle
+
+    // Mostra ou esconde as divs conforme o estado do simulador
+    lampadas.forEach(lampada => {
+        lampada.style.display = ativo ? 'block' : 'none';
+    });
+
+    inputs.forEach(input => {
+        input.style.display = ativo ? 'block' : 'none';
+    });
+
+    // Mostra ou esconde os botões de controle conforme o estado do simulador
+    controlButtons.style.display = ativo ? 'flex' : 'none';
+
     if (!ativo) {
         // Apenas desliga as lâmpadas, mas mantém as configurações em memória
         estado.lamp.fill(false);
@@ -71,6 +90,8 @@ function alternarSimulador(ativo) {
         esconderTodosCronometros(); // Esconde todos os cronômetros ao desligar o simulador
     }
 }
+
+
 
 function alternarLEDPower(ativo) {
     const ledPower = document.getElementById('ledPower');
@@ -162,15 +183,47 @@ function desligarTodasLampadas() {
 
 function atualizarTodasLampadas() {
     for (let i = 0; i < estado.lamp.length; i++) {
+          const interruptor = document.getElementById(`inp${i + 1}`);
+        switch (estado.funcao[i]) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 7:
+            case 8:
+            case 9:
+                 interruptor.src = "interruptorP.png";
+                break;
+            case 5: // Retenção
+                interruptor.src = "interruptorOFF.png";
+                break;
+            case 4: // Detecção
+            case 6: // Contatora
+                interruptor.src = "interruptorP.png";
+                break;
+        
+            default:
+                interruptor.src = "interruptorP.png"; // Imagem padrão
+                break;
+        }
         atualizarVisualLampada(i);
+
     }
+
+
 }
 
 function atualizarVisualLampada(indice) {
     const led = document.getElementById(`led${indice + 1}`);
+    const lampada = document.getElementById(`lamp${indice + 1}`); // Seleciona a lâmpada correspondente
     if (led) {
         led.classList.toggle('ledOn', estado.lamp[indice]);
         led.classList.toggle('ledOff', !estado.lamp[indice]);
+    }
+
+    if (lampada) {
+        // Altera a imagem da lâmpada com base no estado
+        lampada.src = estado.lamp[indice] ? 'lampada ligada.png' : 'lampada desligada.png';
     }
 
     // Atualiza o status na tabela
@@ -287,17 +340,20 @@ function executarModoDeteccao(indice) {
 
 function limparEventosMouse(indice) {
     let botao = document.getElementById(`bot${indice + 1}`);
+     let interruptor = document.getElementById(`inp${indice + 1}`);
 
     // Verifica se os handlers estão presentes e os remove
     if (estado[`mousedownHandler_${indice}`]) {
-        console.log(`Removendo mousedown para o botão ${indice + 1}`);
+       // console.log(`Removendo mousedown para o botão ${indice + 1}`);
         botao.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+        interruptor.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
         delete estado[`mousedownHandler_${indice}`];
     }
 
     if (estado[`mouseupHandler_${indice}`]) {
-        console.log(`Removendo mouseup para o botão ${indice + 1}`);
+        //console.log(`Removendo mouseup para o botão ${indice + 1}`);
         botao.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+        interruptor.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
         delete estado[`mouseupHandler_${indice}`];
     }
 }
@@ -312,10 +368,10 @@ function definirFuncao(indice, funcao) {
     if (estado.simuladorLigado) {
 
 
-        if (funcao !== 5 && funcao!==4) {
+        if (funcao !== 5 && funcao !== 4) {
             limparEventosMouse(indice);
         }
-      
+
 
 
         if (funcao == 1 || funcao == 2 || funcao == 8 || funcao == 9) {
@@ -324,7 +380,7 @@ function definirFuncao(indice, funcao) {
             }
         }
 
-        if ( funcao != 6) {
+        if (funcao != 6) {
             clearTimeout(estado[`temporizadorAtual_${indice}`]);
             clearInterval(estado[`intervaloCronometro_${indice}`]);
             estado.funcao[indice] = funcao;
@@ -362,12 +418,12 @@ function definirFuncao(indice, funcao) {
             atualizarTodasLampadas()
         }
 
-        if (funcao==6) {
-                construcao(indice)
+        if (funcao == 6) {
+            construcao(indice)
         }
-        if(funcao==4){
+        if (funcao == 4) {
             executarModoDeteccao(indice)
-            }
+        }
     } else {
         alert("O simulador está desligado.");
     }
@@ -377,6 +433,7 @@ function definirFuncao(indice, funcao) {
 function configurarBotoes() {
     for (let i = 0; i < 8; i++) {
         let botao = document.getElementById(`bot${i + 1}`);
+        let interruptor = document.getElementById(`inp${i + 1}`);
 
         console.log("%c[executarModoRetencao] target: ", "color: cyan", botao);
 
@@ -425,6 +482,51 @@ function configurarBotoes() {
                 }
             });
 
+            if (interruptor) {
+                interruptor.addEventListener('click', function () {
+                    if (estado.simuladorLigado) {
+                        switch (estado.funcao[i]) {
+                            case 0:
+                                executarModoNormal(i);
+                                break;
+                            case 1:
+                                executarModoTimer(i, 'minutos');
+                                break;
+                            case 2:
+                                executarModoTimer(i, 'segundos');
+                                break;
+                            case 3:
+                                executarModoNivel(i);
+                                break;
+                            case 4:
+                                executarModoDeteccao(i);
+                                break;
+                            case 5:
+                                // construcao(i)
+                                executarModoRetencao(i);
+                                break;
+                            case 6:
+                                construcao(i)
+                                // executarModoContatora(i);
+                                break;
+                            case 7:
+                                executarModoReversao(i);
+                                break;
+                            case 8:
+                                executarModoRetardo(i, 'minutos');
+                                break;
+                            case 9:
+                                executarModoRetardo(i, 'segundos');
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        alert("O simulador está desligado.");
+                    }
+                });
+            }
+
             let botaoRele = document.getElementById(`rele${i + 1}`);
             if (botaoRele) {
                 botaoRele.addEventListener('click', function () {
@@ -459,11 +561,6 @@ function configurarBotoes() {
         });
     }
 }
-
-
-
-
-
 
 
 
@@ -550,25 +647,31 @@ function executarModoRetardo(indice, unidade) {
 
 
 function retencaoMouseDown(indice) {
-    console.log("%c[retencaoMouseDown] indice: ", "color: blue", indice);
+    // console.log("%c[retencaoMouseDown] indice: ", "color: blue", indice);
     estado.lamp[indice] = true; // Liga a lâmpada enquanto o botão está pressionado
     atualizarVisualLampada(indice);
+    atualizarVisualInterruptor(indice);
     tocarSom();
 }
 
 function retencaoMouseUp(indice) {
-    console.log("%c[retencaoMouseUp] indice: ", "color: blue", indice);
+    // console.log("%c[retencaoMouseUp] indice: ", "color: blue", indice);
     estado.lamp[indice] = false; // Desliga a lâmpada ao soltar o botão
     atualizarVisualLampada(indice);
+    atualizarVisualInterruptor(indice);
     tocarSom();
 }
 
 function executarModoRetencao(indice) {
     let botao = document.getElementById(`bot${indice + 1}`);
+    let interruptor = document.getElementById(`inp${indice + 1}`);
 
     // Limpa eventos anteriores antes de adicionar novos
     botao.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
     botao.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+
+    interruptor.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+    interruptor.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
 
     // Define os novos eventos
     const mouseDownHandler = () => retencaoMouseDown(indice);
@@ -580,18 +683,10 @@ function executarModoRetencao(indice) {
 
     // Adiciona os eventos ao botão
     botao.addEventListener('mousedown', mouseDownHandler);
+    interruptor.addEventListener('mousedown', mouseDownHandler);
     botao.addEventListener('mouseup', mouseUpHandler);
+    interruptor.addEventListener('mouseup', mouseUpHandler);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -796,10 +891,16 @@ function iniciarContagemRegressiva(indice, duracao, acaoFinal) {
 
 function mostrarCronometro(indice, duracao) {
     const display = document.getElementById(`timerDisplay${indice + 1}`);
+    const displayLamp = document.getElementById(`timerDisplayLamp${indice + 1}`); // Novo cronômetro
     let tempoRestante = duracao / 1000;
 
     display.style.display = 'block';
     display.textContent = `${tempoRestante}`;
+
+    if (displayLamp) {
+        displayLamp.style.display = 'block';
+        displayLamp.textContent = `${tempoRestante} s`;
+    }
 
     // Cancela qualquer cronômetro anterior para este índice
     clearInterval(estado[`intervaloCronometro_${indice}`]);
@@ -809,9 +910,11 @@ function mostrarCronometro(indice, duracao) {
         tempoRestante--;
         if (tempoRestante > 0) {
             display.textContent = `${tempoRestante}`;
+            if (displayLamp) displayLamp.textContent = `${tempoRestante} s`;
         } else {
             clearInterval(intervalo);
             display.style.display = 'none';
+            if (displayLamp) displayLamp.style.display = 'none';
         }
     }, 1000);
 
@@ -825,7 +928,10 @@ function mostrarCronometro(indice, duracao) {
 function esconderCronometro(indice) {
     clearInterval(estado.intervaloCronometro); // Cancela o intervalo do cronômetro
     const display = document.getElementById(`timerDisplay${indice + 1}`);
+    const displayLamp = document.getElementById(`timerDisplayLamp${indice + 1}`); // Novo cronômetro
     display.style.display = 'none'; // Oculta o cronômetro
+    if (displayLamp) displayLamp.style.display = 'none';
+
 }
 
 
@@ -842,5 +948,19 @@ function tocarSom() {
     if (som) {
         som.currentTime = 0; // Rewind to start
         som.play();
+    }
+}
+
+
+
+
+function atualizarVisualInterruptor(indice) {
+    const interruptor = document.getElementById(`inp${indice + 1}`);
+    if (interruptor) {
+        if (estado.lamp[indice]) {
+            interruptor.src = "interruptorON.png";
+        } else {
+            interruptor.src = "interruptorOFF.png";
+        }
     }
 }
