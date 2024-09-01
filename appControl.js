@@ -70,6 +70,9 @@ function alternarSimulador(ativo) {
     const inputs = document.querySelectorAll('.input');
     const controlButtons = document.querySelector('.control-buttons');
     const placa = document.getElementById('sigeImage'); // Seleciona a imagem da placa
+    const itens = document.getElementById('itens');
+
+    itens.style.display = ativo ? 'block' : 'none';
 
     lampadas.forEach(lampada => {
         lampada.style.display = ativo ? 'block' : 'none';

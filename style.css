@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+
 }
 
 
@@ -38,7 +39,7 @@ main {
 
 }
 
-.itens {
+.rodape {
     width: 100%;
     height: 20%;
     background-color: #1f2d40;
@@ -46,7 +47,17 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
 
+.itens {
+    width: 90%;
+    height: 100%;
+    background-color: #1f2d40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
 
 }
 
@@ -118,7 +129,7 @@ main {
 
 .h1simulador {
     color: white;
-    font-size: 150%;
+    font-size: 200%;
 
 }
 
@@ -572,23 +583,25 @@ select#functionSelect {
 
 
 table {
-    width: 95%;
+
+    width: 98%;
     border-collapse: collapse;
     color: white;
     background-color: #091424;
-
 
 }
 
 th {
     border: 1px solid #fff;
     text-align: center;
+    font-size: 1.5vw;
 }
 
 td {
     border: 1px solid #fff;
-    text-align: left;
+    text-align: center;
     padding-left: 0.5%;
+    font-size: 1vw;
 }
 
 
@@ -603,20 +616,52 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 6%;
-    transform: rotate(-90deg); /* Gira 90 graus anti-horário */
-    display: none; 
+    transform: rotate(-90deg);
+    /* Gira 90 graus anti-horário */
+    display: none;
 
 }
 
 /* Ajuste as posições conforme necessário para cada display de timer */
-#lamp8 {top: 5%; left:6%;}
-#lamp7 {top: 15%; left:6%;}
-#lamp6 {top: 25%; left:6%;}
-#lamp5 {top: 35%; left:6%;}
-#lamp4 {top: 45%; left:6%;}
-#lamp3 {top: 55%; left:6%;}
-#lamp2 {top: 65%; left:6%;}
-#lamp1 {top: 75%; left:6%;}
+#lamp8 {
+    top: 5%;
+    left: 6%;
+}
+
+#lamp7 {
+    top: 15%;
+    left: 6%;
+}
+
+#lamp6 {
+    top: 25%;
+    left: 6%;
+}
+
+#lamp5 {
+    top: 35%;
+    left: 6%;
+}
+
+#lamp4 {
+    top: 45%;
+    left: 6%;
+}
+
+#lamp3 {
+    top: 55%;
+    left: 6%;
+}
+
+#lamp2 {
+    top: 65%;
+    left: 6%;
+}
+
+#lamp1 {
+    top: 75%;
+    left: 6%;
+}
 
 
 
@@ -630,14 +675,46 @@ td {
 }
 
 /* Exemplo de posicionamento para os cronômetros perto das lâmpadas */
-#timerDisplayLamp1 { top: 80%; left: 0%; }
-#timerDisplayLamp2 { top: 70%; left: 0%; }
-#timerDisplayLamp3 { top: 60%; left: 0%; }
-#timerDisplayLamp4 { top: 50%; left: 0%; }
-#timerDisplayLamp5 { top: 40%; left: 0%; }
-#timerDisplayLamp6 { top: 30%; left: 0%; }
-#timerDisplayLamp7 { top: 20%; left: 0%; }
-#timerDisplayLamp8 { top: 10%; left: 0%; }
+#timerDisplayLamp1 {
+    top: 80%;
+    left: 0%;
+}
+
+#timerDisplayLamp2 {
+    top: 70%;
+    left: 0%;
+}
+
+#timerDisplayLamp3 {
+    top: 60%;
+    left: 0%;
+}
+
+#timerDisplayLamp4 {
+    top: 50%;
+    left: 0%;
+}
+
+#timerDisplayLamp5 {
+    top: 40%;
+    left: 0%;
+}
+
+#timerDisplayLamp6 {
+    top: 30%;
+    left: 0%;
+}
+
+#timerDisplayLamp7 {
+    top: 20%;
+    left: 0%;
+}
+
+#timerDisplayLamp8 {
+    top: 10%;
+    left: 0%;
+}
+
 
 
 .input {
@@ -646,24 +723,82 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 4%;
-    transform: rotate(-90deg); /* Gira 90 graus anti-horário */
-    display: none; 
+    transform: rotate(-90deg);
+    /* Gira 90 graus anti-horário */
+    display: none;
 
 }
 
 /* Ajuste as posições conforme necessário para cada display de timer */
-#inp8 {top: 5%; right:10%;}
-#inp7 {top: 15%; right:10%;}
-#inp6 {top: 25%; right:10%;}
-#inp5 {top: 35%; right:10%;}
-#inp4 {top: 45%; right:10%;}
-#inp3 {top: 55%; right:10%;}
-#inp2 {top: 65%; right:10%;}
-#inp1 {top: 75%; right:10%;}
+#inp8 {
+    top: 5%;
+    right: 10%;
+}
+
+#inp7 {
+    top: 15%;
+    right: 10%;
+}
+
+#inp6 {
+    top: 25%;
+    right: 10%;
+}
+
+#inp5 {
+    top: 35%;
+    right: 10%;
+}
+
+#inp4 {
+    top: 45%;
+    right: 10%;
+}
+
+#inp3 {
+    top: 55%;
+    right: 10%;
+}
+
+#inp2 {
+    top: 65%;
+    right: 10%;
+}
+
+#inp1 {
+    top: 75%;
+    right: 10%;
+}
 
 
 .ofuscado {
-    filter: blur(5px); /* Aplica um desfoque de 5px */
-    opacity: 0.5; /* Reduz a opacidade para 50% */
-    transition: filter 0.5s ease, opacity 0.5s ease; /* Adiciona uma transição suave */
+    filter: blur(5px);
+    /* Aplica um desfoque de 5px */
+    opacity: 0.9;
+    /* Reduz a opacidade para 50% */
+    transition: filter 0.5s ease, opacity 0.5s ease;
+    /* Adiciona uma transição suave */
 }
+
+h3 {
+    color: white;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+p {
+
+    color: white;
+    text-align: justify;
+}
+
+.seta {
+    width: 5vw;
+}
+
+.informativo {
+    font-size: 1.3vw;
+    margin: 10px;
+
+}
+
