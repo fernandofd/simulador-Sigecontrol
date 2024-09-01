@@ -57,7 +57,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1%;
+  
 
 }
 
@@ -585,7 +585,7 @@ select#functionSelect {
 table {
 
     width: 98%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     color: white;
     background-color: #091424;
 
@@ -600,7 +600,6 @@ th {
 td {
     border: 1px solid #fff;
     text-align: center;
-    padding-left: 0.5%;
     font-size: 1vw;
 }
 
@@ -783,7 +782,7 @@ td {
 h3 {
     color: white;
     text-align: center;
-    margin-bottom: 1%;
+    margin-bottom: 0.3%;
 }
 
 p {
