@@ -290,68 +290,7 @@ function atualizarVisualLampada(indice) {
 
 
 
-function deteccaoMouseDown(indice) {
 
-
-    clearTimeout(estado[`temporizadorAtual_${indice}`]);
-    clearInterval(estado[`intervaloCronometro_${indice}`]);
-
-    estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão está pressionado
-    atualizarVisualLampada(indice);
-    atualizarVisualInterruptor(indice)
-    tocarSom();
-    esconderCronometro(indice);
-}
-
-function deteccaoMouseUp(indice) {
-
-    clearTimeout(estado[`temporizadorAtual_${indice}`]);
-    clearInterval(estado[`intervaloCronometro_${indice}`]);
-
-    const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
-
-    if (duracao > 0) {
-        mostrarCronometro(indice, duracao);
-
-        estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
-            estado.lamp[indice] = true;
-            atualizarVisualLampada(indice);
-            atualizarVisualInterruptor(indice)
-            tocarSom();
-            esconderCronometro(indice);
-        }, duracao);
-    } else {
-        estado.lamp[indice] = true;
-        atualizarVisualLampada(indice);
-        atualizarVisualInterruptor(indice)
-        tocarSom();
-    }
-}
-
-function executarModoDeteccao(indice) {
-    let botaoNovo = document.getElementById(`bot${indice + 1}`);
-    let interruptor = document.getElementById(`inp${indice + 1}`);
-
-    // Limpa eventos anteriores antes de adicionar novos
-    botaoNovo.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
-    interruptor.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
-    botaoNovo.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
-    interruptor.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
-
-    // Define os novos eventos
-    const mouseDownHandler = () => deteccaoMouseDown(indice);
-    const mouseUpHandler = () => deteccaoMouseUp(indice);
-
-    // Armazena os eventos no estado para poder removê-los posteriormente
-    estado[`mousedownHandler_${indice}`] = mouseDownHandler;
-    estado[`mouseupHandler_${indice}`] = mouseUpHandler;
-
-    // Adiciona os eventos ao botão
-    botaoNovo.addEventListener('mousedown', mouseDownHandler);
-    interruptor.addEventListener('mousedown', mouseDownHandler);
-    botaoNovo.addEventListener('mouseup', mouseUpHandler);
-    interruptor.addEventListener('mouseup', mouseUpHandler);
-}
 
 function limparEventosMouse(indice) {
     let botao = document.getElementById(`bot${indice + 1}`);
@@ -665,7 +604,7 @@ function retencaoMouseDown(indice) {
     // console.log("%c[retencaoMouseDown] indice: ", "color: blue", indice);
     estado.lamp[indice] = true; // Liga a lâmpada enquanto o botão está pressionado
     atualizarVisualLampada(indice);
-    atualizarVisualInterruptor(indice);
+    atualizarVisualInterruptor(indice, 'on'); // Muda para a imagem ON
     tocarSom();
 }
 
@@ -673,7 +612,7 @@ function retencaoMouseUp(indice) {
     // console.log("%c[retencaoMouseUp] indice: ", "color: blue", indice);
     estado.lamp[indice] = false; // Desliga a lâmpada ao soltar o botão
     atualizarVisualLampada(indice);
-    atualizarVisualInterruptor(indice);
+    atualizarVisualInterruptor(indice, 'off'); // Muda para a imagem ON
     tocarSom();
 }
 
@@ -748,29 +687,82 @@ function executarModoNivel(indice) {
 
 
 
-// Função para configurar o modo Reversão
-// function configurarModoReversao(indice) {
-//     estado.funcao[indice] = 7;
-//     estado.lamp[indice] = false; // Desliga a lâmpada inicialmente
-//     atualizarVisualLampada(indice);
-//     tocarSom();
-//     esconderCronometro(indice);
 
-//     // Identifica o par correspondente
-//     let par = (indice % 2 === 0) ? indice + 1 : indice - 1;
 
-//     // Configura automaticamente o par para o modo reversão
-//     estado.funcao[par] = 7;
-//     estado.lamp[par] = false; // Desliga a lâmpada do par
-//     atualizarVisualLampada(par);
-//     tocarSom();
-//     esconderCronometro(par);
 
-//     // Copia o tempo configurado para o par correspondente após a configuração do modal
-//     setTimeout(() => {
-//         estado.tempoLampada[par] = estado.tempoLampada[indice];
-//     }, 100); // Define um pequeno atraso para garantir que o tempo tenha sido configurado
-// }
+
+
+function deteccaoMouseDown(indice) {
+
+
+    clearTimeout(estado[`temporizadorAtual_${indice}`]);
+    clearInterval(estado[`intervaloCronometro_${indice}`]);
+
+    estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão está pressionado
+    atualizarVisualLampada(indice);
+    atualizarVisualInterruptor(indice, 'on'); // Muda para a imagem ON
+    tocarSom();
+    esconderCronometro(indice);
+}
+
+function deteccaoMouseUp(indice) {
+
+    clearTimeout(estado[`temporizadorAtual_${indice}`]);
+    clearInterval(estado[`intervaloCronometro_${indice}`]);
+
+    const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
+     atualizarVisualInterruptor(indice, 'off'); // Muda para a imagem OFF
+
+    if (duracao > 0) {
+        mostrarCronometro(indice, duracao);
+
+        estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
+            estado.lamp[indice] = true;
+            atualizarVisualLampada(indice);
+            tocarSom();
+            esconderCronometro(indice);
+        }, duracao);
+    } else {
+        estado.lamp[indice] = true;
+        atualizarVisualLampada(indice);
+        atualizarVisualInterruptor(indice, 'off'); // Muda para a imagem OFF
+        tocarSom();
+    }
+}
+
+function executarModoDeteccao(indice) {
+    let botaoNovo = document.getElementById(`bot${indice + 1}`);
+    let interruptor = document.getElementById(`inp${indice + 1}`);
+
+    // Limpa eventos anteriores antes de adicionar novos
+    botaoNovo.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+    interruptor.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+    botaoNovo.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+    interruptor.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+
+    // Define os novos eventos
+    const mouseDownHandler = () => deteccaoMouseDown(indice);
+    const mouseUpHandler = () => deteccaoMouseUp(indice);
+
+    // Armazena os eventos no estado para poder removê-los posteriormente
+    estado[`mousedownHandler_${indice}`] = mouseDownHandler;
+    estado[`mouseupHandler_${indice}`] = mouseUpHandler;
+
+    // Adiciona os eventos ao botão
+    botaoNovo.addEventListener('mousedown', mouseDownHandler);
+    interruptor.addEventListener('mousedown', mouseDownHandler);
+    botaoNovo.addEventListener('mouseup', mouseUpHandler);
+    interruptor.addEventListener('mouseup', mouseUpHandler);
+}
+
+
+
+
+
+
+
+
+
 
 // Função para executar o modo Reversão
 function executarModoReversao(indice) {
@@ -969,13 +961,15 @@ function tocarSom() {
 
 
 
-function atualizarVisualInterruptor(indice) {
+function atualizarVisualInterruptor(indice, estadoInterruptor) {
     const interruptor = document.getElementById(`inp${indice + 1}`);
     if (interruptor) {
-        if (estado.lamp[indice]) {
-            interruptor.src = "interruptorON.png";
-        } else {
-            interruptor.src = "interruptorOFF.png";
+        if (estadoInterruptor === 'on') {
+            interruptor.src = "./interruptorON.png"; // Altera para a imagem ON ao pressionar
+        } else if (estadoInterruptor === 'off') {
+            interruptor.src = "./interruptorOFF.png"; // Altera para a imagem OFF ao soltar
+        } else if (estadoInterruptor === 'idle') {
+            interruptor.src = "./interruptorP.png"; // Volta para a imagem padrão
         }
     }
 }
