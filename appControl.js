@@ -200,18 +200,18 @@ function atualizarTodasLampadas() {
             case 7:
             case 8:
             case 9:
-                interruptor.src = "interruptorP.png";
+                interruptor.src = "interruptorPON.png";
                 break;
             case 4: // Detecção
             case 5: // Retenção
                 interruptor.src = "interruptorOFF.png";
                 break;
             case 6: // Contatora
-                interruptor.src = "interruptorP.png";
+                interruptor.src = "interruptorPON.png";
                 break;
 
             default:
-                interruptor.src = "interruptorP.png"; // Imagem padrão
+                interruptor.src = "interruptorPON.png"; // Imagem padrão
                 break;
         }
         atualizarVisualLampada(i);
@@ -969,7 +969,7 @@ function atualizarVisualInterruptor(indice, estadoInterruptor) {
         } else if (estadoInterruptor === 'off') {
             interruptor.src = "./interruptorOFF.png"; // Altera para a imagem OFF ao soltar
         } else if (estadoInterruptor === 'idle') {
-            interruptor.src = "./interruptorP.png"; // Volta para a imagem padrão
+            interruptor.src = "./interruptorPON.png"; // Volta para a imagem padrão
         }
     }
 }
