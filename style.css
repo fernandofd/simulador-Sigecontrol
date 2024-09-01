@@ -614,7 +614,7 @@ td {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    width: 6%;
+    width: 5%;
     transform: rotate(-90deg);
     /* Gira 90 graus anti-horário */
     display: none;
@@ -623,7 +623,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #lamp8 {
-    top: 5%;
+    top: 3%;
     left: 6%;
 }
 
@@ -633,35 +633,100 @@ td {
 }
 
 #lamp6 {
-    top: 25%;
+    top: 27%;
     left: 6%;
 }
 
 #lamp5 {
-    top: 35%;
+    top: 39%;
     left: 6%;
 }
 
 #lamp4 {
-    top: 45%;
+    top: 51%;
     left: 6%;
 }
 
 #lamp3 {
-    top: 55%;
+    top: 63%;
     left: 6%;
 }
 
 #lamp2 {
-    top: 65%;
-    left: 6%;
-}
-
-#lamp1 {
     top: 75%;
     left: 6%;
 }
 
+#lamp1 {
+    top: 87%;
+    left: 6%;
+}
+
+
+
+.helice {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 5%;
+    display: none;
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#helice8 {
+    top: 3%;
+    left: 6%;
+}
+
+#helice7 {
+    top: 15%;
+    left: 6%;
+}
+
+#helice6 {
+    top: 27%;
+    left: 6%;
+}
+
+#helice5 {
+    top: 39%;
+    left: 6%;
+}
+
+#helice4 {
+    top: 51%;
+    left: 6%;
+}
+
+#helice3 {
+    top: 63%;
+    left: 6%;
+}
+
+#helice2 {
+    top: 75%;
+    left: 6%;
+}
+
+#helice1 {
+    top: 87%;
+    left: 6%;
+}
+
+@keyframes rotateHelice {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.helice-rotating {
+    animation: rotateHelice 2s linear infinite; /* Rotação contínua */
+}
 
 
 
@@ -675,42 +740,42 @@ td {
 
 /* Exemplo de posicionamento para os cronômetros perto das lâmpadas */
 #timerDisplayLamp1 {
-    top: 80.5%;
+    top: 91%;
     left: 13%;
 }
 
 #timerDisplayLamp2 {
-    top: 70.5%;
+    top: 79%;
     left: 13%;
 }
 
 #timerDisplayLamp3 {
-    top: 60.5%;
+    top: 67%;
     left: 13%;
 }
 
 #timerDisplayLamp4 {
-    top: 50.5%;
+    top: 55%;
     left: 13%;
 }
 
 #timerDisplayLamp5 {
-    top: 40.5%;
+    top: 43%;
     left: 13%;
 }
 
 #timerDisplayLamp6 {
-    top: 30.5%;
+    top: 31%;
     left: 13%;
 }
 
 #timerDisplayLamp7 {
-    top: 20.5%;
+    top: 19%;
     left: 13%;
 }
 
 #timerDisplayLamp8 {
-    top: 10.5%;
+    top: 7%;
     left: 13%;
 }
 

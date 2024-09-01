@@ -66,16 +66,36 @@ function alternarSimulador(ativo) {
     estado.simuladorLigado = ativo;
     alternarLEDPower(ativo); // Liga ou desliga o LED de power
 
+    if (!ativo) {
+        estado.lamp.fill(false);
+    }
+
+    atualizarTodasLampadas();
+    esconderTodosCronometros();
+
     const lampadas = document.querySelectorAll('.lampada');
+    const helice = document.querySelector('.helice');
     const inputs = document.querySelectorAll('.input');
     const controlButtons = document.querySelector('.control-buttons');
     const placa = document.getElementById('sigeImage'); // Seleciona a imagem da placa
     const itens = document.getElementById('itens');
 
+
+
     itens.style.display = ativo ? 'block' : 'none';
+    helice.style.display = ativo ? 'block' : 'none';
+
+
+    // if (!ativo) {
+    //      helice.style.display = 'none';
+    // }else{
+    //     helice.style.display = 'block';
+    // }
 
     lampadas.forEach(lampada => {
         lampada.style.display = ativo ? 'block' : 'none';
+
+
     });
 
     inputs.forEach(input => {
@@ -90,12 +110,10 @@ function alternarSimulador(ativo) {
     } else {
         placa.classList.add('ofuscado');
     }
-
-    if (!ativo) {
-        estado.lamp.fill(false);
+    if (ativo) {
         atualizarTodasLampadas();
-        esconderTodosCronometros();
     }
+
 }
 
 
@@ -222,17 +240,65 @@ function atualizarTodasLampadas() {
 }
 
 function atualizarVisualLampada(indice) {
+
     const led = document.getElementById(`led${indice + 1}`);
     const lampada = document.getElementById(`lamp${indice + 1}`); // Seleciona a lâmpada correspondente
+    const helice = document.getElementById(`helice${indice + 1}`);
+
+
     if (led) {
         led.classList.toggle('ledOn', estado.lamp[indice]);
         led.classList.toggle('ledOff', !estado.lamp[indice]);
     }
 
-    if (lampada) {
-        // Altera a imagem da lâmpada com base no estado
-        lampada.src = estado.lamp[indice] ? 'lampada ligada.png' : 'lampada desligada.png';
+    if ([0, 1, 2, 5].includes(estado.funcao[indice])) {
+        if (lampada) {
+            // Altera a imagem da lâmpada com base no estado
+            lampada.style.display = 'block';
+            helice.style.display = 'none';
+            lampada.src = estado.lamp[indice] ? './lampada ligada.png' : 'lampada desligada.png';
+        }
+    } else if ([3, 7, 8, 9].includes(estado.funcao[indice])) {
+        if (lampada) {
+            if (estado.funcao[indice] == 3) {
+                if (indice % 2 == 0) {
+                    // Altera a imagem da lâmpada com base no estado
+                    lampada.style.display = 'block';
+                    helice.style.display = 'block';
+                    lampada.src = estado.lamp[indice] ? './motorBomba.png' : 'motorBomba.png';
+                    if (estado.lamp[indice]) {
+                        helice.classList.add('helice-rotating'); // Adiciona a classe de rotação
+                    } else {
+                        helice.classList.remove('helice-rotating'); // Remove a classe de rotação
+                    }
+                } else {
+                    lampada.style.display = 'none';
+                }
+
+            }
+            if (estado.funcao[indice] == 8 || estado.funcao[indice] == 9) {
+                lampada.style.display = 'block';
+                helice.style.display = 'block';
+                lampada.src = estado.lamp[indice] ? './motorBomba.png' : 'motorBomba.png';
+                if (estado.lamp[indice]) {
+                    helice.classList.add('helice-rotating'); // Adiciona a classe de rotação
+                } else {
+                    helice.classList.remove('helice-rotating'); // Remove a classe de rotação
+                }
+            }
+        }
+    } else if ([4].includes(estado.funcao[indice])) {
+         if (lampada) {
+            // Altera a imagem da lâmpada com base no estado
+            lampada.style.display = 'block';
+            helice.style.display = 'none';
+            lampada.src = estado.lamp[indice] ? './lampada ligada vermelha.png' : 'lampada ligada verde.png';
+        }
+
     }
+
+
+
 
     // Atualiza o status na tabela
     const statusElement = document.getElementById(`status-${indice + 1}`);
@@ -283,6 +349,13 @@ function atualizarVisualLampada(indice) {
     // Atualiza o tempo na tabela
     const tempoElement = document.getElementById(`tempo-${indice + 1}`);
     tempoElement.textContent = `${estado.tempoLampada[indice]} s`;
+
+
+    if (!estado.simuladorLigado) {
+        helice.classList.remove('helice-rotating'); // Remove a classe de rotação
+        helice.style.display = 'none';
+
+    }
 }
 
 
@@ -711,7 +784,7 @@ function deteccaoMouseUp(indice) {
     clearInterval(estado[`intervaloCronometro_${indice}`]);
 
     const duracao = estado.tempoLampada[indice] * 1000; // Convertendo o tempo configurado em segundos
-     atualizarVisualInterruptor(indice, 'off'); // Muda para a imagem OFF
+    atualizarVisualInterruptor(indice, 'off'); // Muda para a imagem OFF
 
     if (duracao > 0) {
         mostrarCronometro(indice, duracao);
