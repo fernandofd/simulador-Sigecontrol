@@ -140,7 +140,7 @@ main {
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 60px;
+    width: 50px;
     /* Largura ajustada para ser mais compacta */
     height: 24px;
     background-color: #ccc;
@@ -675,43 +675,43 @@ td {
 
 /* Exemplo de posicionamento para os cronômetros perto das lâmpadas */
 #timerDisplayLamp1 {
-    top: 80%;
-    left: 0%;
+    top: 80.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp2 {
-    top: 70%;
-    left: 0%;
+    top: 70.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp3 {
-    top: 60%;
-    left: 0%;
+    top: 60.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp4 {
-    top: 50%;
-    left: 0%;
+    top: 50.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp5 {
-    top: 40%;
-    left: 0%;
+    top: 40.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp6 {
-    top: 30%;
-    left: 0%;
+    top: 30.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp7 {
-    top: 20%;
-    left: 0%;
+    top: 20.5%;
+    left: 13%;
 }
 
 #timerDisplayLamp8 {
-    top: 10%;
-    left: 0%;
+    top: 10.5%;
+    left: 13%;
 }
 
 

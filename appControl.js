@@ -191,7 +191,7 @@ function desligarTodasLampadas() {
 
 function atualizarTodasLampadas() {
     for (let i = 0; i < estado.lamp.length; i++) {
-          const interruptor = document.getElementById(`inp${i + 1}`);
+        const interruptor = document.getElementById(`inp${i + 1}`);
         switch (estado.funcao[i]) {
             case 0:
             case 1:
@@ -200,16 +200,16 @@ function atualizarTodasLampadas() {
             case 7:
             case 8:
             case 9:
-                 interruptor.src = "interruptorP.png";
+                interruptor.src = "interruptorP.png";
                 break;
+            case 4: // Detecção
             case 5: // Retenção
                 interruptor.src = "interruptorOFF.png";
                 break;
-            case 4: // Detecção
             case 6: // Contatora
                 interruptor.src = "interruptorP.png";
                 break;
-        
+
             default:
                 interruptor.src = "interruptorP.png"; // Imagem padrão
                 break;
@@ -291,19 +291,19 @@ function atualizarVisualLampada(indice) {
 
 
 function deteccaoMouseDown(indice) {
-    console.log("%c[deteccaoMouseDown] índice: ", "color: green", indice);
+
 
     clearTimeout(estado[`temporizadorAtual_${indice}`]);
     clearInterval(estado[`intervaloCronometro_${indice}`]);
 
     estado.lamp[indice] = false; // Apaga a lâmpada enquanto o botão está pressionado
     atualizarVisualLampada(indice);
+    atualizarVisualInterruptor(indice)
     tocarSom();
     esconderCronometro(indice);
 }
 
 function deteccaoMouseUp(indice) {
-    console.log("%c[deteccaoMouseUp] índice: ", "color: green", indice);
 
     clearTimeout(estado[`temporizadorAtual_${indice}`]);
     clearInterval(estado[`intervaloCronometro_${indice}`]);
@@ -316,22 +316,27 @@ function deteccaoMouseUp(indice) {
         estado[`temporizadorAtual_${indice}`] = setTimeout(function () {
             estado.lamp[indice] = true;
             atualizarVisualLampada(indice);
+            atualizarVisualInterruptor(indice)
             tocarSom();
             esconderCronometro(indice);
         }, duracao);
     } else {
         estado.lamp[indice] = true;
         atualizarVisualLampada(indice);
+        atualizarVisualInterruptor(indice)
         tocarSom();
     }
 }
 
 function executarModoDeteccao(indice) {
     let botaoNovo = document.getElementById(`bot${indice + 1}`);
+    let interruptor = document.getElementById(`inp${indice + 1}`);
 
     // Limpa eventos anteriores antes de adicionar novos
     botaoNovo.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
+    interruptor.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
     botaoNovo.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
+    interruptor.removeEventListener('mouseup', estado[`mouseupHandler_${indice}`]);
 
     // Define os novos eventos
     const mouseDownHandler = () => deteccaoMouseDown(indice);
@@ -343,16 +348,18 @@ function executarModoDeteccao(indice) {
 
     // Adiciona os eventos ao botão
     botaoNovo.addEventListener('mousedown', mouseDownHandler);
+    interruptor.addEventListener('mousedown', mouseDownHandler);
     botaoNovo.addEventListener('mouseup', mouseUpHandler);
+    interruptor.addEventListener('mouseup', mouseUpHandler);
 }
 
 function limparEventosMouse(indice) {
     let botao = document.getElementById(`bot${indice + 1}`);
-     let interruptor = document.getElementById(`inp${indice + 1}`);
+    let interruptor = document.getElementById(`inp${indice + 1}`);
 
     // Verifica se os handlers estão presentes e os remove
     if (estado[`mousedownHandler_${indice}`]) {
-       // console.log(`Removendo mousedown para o botão ${indice + 1}`);
+        // console.log(`Removendo mousedown para o botão ${indice + 1}`);
         botao.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
         interruptor.removeEventListener('mousedown', estado[`mousedownHandler_${indice}`]);
         delete estado[`mousedownHandler_${indice}`];
