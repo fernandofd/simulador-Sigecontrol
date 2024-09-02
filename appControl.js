@@ -79,8 +79,7 @@ function alternarSimulador(ativo) {
     // const heliceMaior = document.querySelector('.heliceMaior');
     // const inputs = document.querySelectorAll('.input');
     // const controlButtons = document.querySelector('.control-buttons');
-    const main = document.querySelectorAll('main'); // Seleciona a imagem da placa
-    // const itens = document.getElementById('itens');
+   
     // const confinfo = document.getElementById('conf');
 
 
@@ -637,28 +636,28 @@ function configurarBotoes() {
     const externo = document.getElementById('externo');
     if (externo) {
         externo.addEventListener('click', function () {
-            alert("Em desenvolvimento")
+            alert("Em desenvolvimento no simulador, na placa real já está funcional")
         });
     }
 
     const alarme = document.getElementById('alarme');
     if (alarme) {
         alarme.addEventListener('click', function () {
-            alert("Em desenvolvimento")
+             alert("Em desenvolvimento no simulador, na placa real já está funcional")
         });
     }
 
     const alerta = document.getElementById('alerta');
     if (alerta) {
         alerta.addEventListener('click', function () {
-            alert("Em desenvolvimento")
+             alert("Em desenvolvimento no simulador, na placa real já está funcional")
         });
     }
 
     const sincronismo = document.getElementById('sincronismo');
     if (sincronismo) {
         sincronismo.addEventListener('click', function () {
-            alert("Em desenvolvimento")
+            alert("Em desenvolvimento no simulador, vamos usar o endpoint de integração com a placa")
         });
     }
 
