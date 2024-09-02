@@ -843,7 +843,7 @@ td {
 
 #lampMaior {
     top: 50%;
-    left: 5%;
+    left: 6%;
 }
 
 .textlampMaior {
@@ -933,7 +933,7 @@ td {
 
 #heliceMaior {
     top: 50%;
-    left: 5%;
+    left: 6%;
 }
 
 @keyframes rotateHelice1 {
@@ -965,15 +965,15 @@ td {
 
 
 
-.timer-display-lamp {
+/* .timer-display-lamp {
     position: absolute;
     text-align: center;
     color: white;
-    font-size: 1vw;
-    /* Ajuste a posição para ficar próxima às lâmpadas */
+    font-size: 0.8vw;
+  
 }
 
-/* Exemplo de posicionamento para os cronômetros perto das lâmpadas */
+
 
 
 #timerDisplayLamp8 {
@@ -1022,7 +1022,7 @@ td {
     text-align: center;
     color: white;
     font-size: 1.5vw;
-    /* Ajuste a posição para ficar próxima às lâmpadas */
+
 }
 
 #timerDisplayLampMaior {
@@ -1030,7 +1030,7 @@ td {
     left: 17%;
 }
 
-
+ */
 
 .input {
     position: absolute;
@@ -1045,12 +1045,12 @@ td {
 /* Ajuste as posições conforme necessário para cada display de timer */
 #inp8 {
      top: 76%;
-    right: 12%;
+    right: 2%;
 }
 
 #inp7 {
     top: 76%;
-    right: 2%;
+    right: 12%;
 }
 
 #inp6 {
