@@ -39,27 +39,9 @@ main {
 
 }
 
-.rodape {
-    width: 100%;
-    height: 20%;
-    background-color: #1f2d40;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-.itens {
-    width: 90%;
-    height: 100%;
-    background-color: #1f2d40;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  
 
-}
+
 
 
 
@@ -106,7 +88,21 @@ main {
 
 
 
+.btn-config {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.3vw;
+    width: 35%;
+    margin-top: 2%;
+}
 
+.btn-config:hover {
+    background-color: #45a049;
+    /* Um tom mais escuro de verde no hover */
+}
 
 
 .sigecontrol-board {
@@ -582,27 +578,73 @@ select#functionSelect {
 }
 
 
+
+.rodape {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    width: 100%;
+    height: 20%;
+    background-color: #1f2d40;
+    
+}
+
+.itens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 46%;
+    height: 90%;
+     border: 1px solid #ccc;
+    border-radius: 10px;
+    
+
+}
+
 table {
 
-    width: 98%;
+
     /* border-collapse: collapse; */
     color: white;
-    background-color: #091424;
+    text-align: start;
+    width: 100%;
+    height: 80%;
+    padding-top: 1vh;
+    /* background-color: #091424; */
 
 }
 
 th {
-    border: 1px solid #fff;
-    text-align: center;
-    font-size: 1.5vw;
+    /* border: 1px solid #fff; */
+    text-align: start;
+    font-size: 1.1vw;
+    padding-inline: 0.08vh;
+
+    
 }
 
 td {
-    border: 1px solid #fff;
-    text-align: center;
+    /* border: 1px solid #fff; */
+    text-align: start;
     font-size: 1vw;
+     padding-inline: 0.08vh;
+   
 }
 
+
+.conf{
+ display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 46%;
+    height: 90%;
+     border: 1px solid #ccc;
+    border-radius: 10px;
+    
+}
 
 
 
@@ -847,7 +889,8 @@ td {
 h3 {
     color: white;
     text-align: center;
-    margin-bottom: 0.3%;
+    margin-bottom: 0.1%;
+    font-size: 1.3vw;
 }
 
 p {
@@ -861,8 +904,8 @@ p {
 }
 
 .informativo {
-    font-size: 1.3vw;
-    margin: 10px;
-
+    font-size: 1.2vw;
+   padding: 0.5%;
+   padding-left: 3%;
 }
 

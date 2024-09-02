@@ -28,9 +28,11 @@
         <div class="control-buttons">
             <button id="turnOnAll" class="control-btn">Ligar Tudo</button>
             <button id="turnOffAll" class="control-btn">Apagar Tudo</button>
-            <p class="informativo">Todos botões podem ser clicados, inclusive os da placa.</p>
-            <p class="informativo">Clique no relé de saída para alterar o modo de trabalho de cada canal da automação.
-            </p>
+             <button id="externo" class="control-btn">Área externa</button>
+             <button id="alarme" class="control-btn">Alarme</button>
+             <button id="alerta" class="control-btn">Alerta Vizinhos</button>
+            <button id="sincronismo" class="control-btn">Sincronismo Real Com a Placa</button>
+           
         </div>
 
         <div class="trabalho">
@@ -156,15 +158,15 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Dados</th>
-                        <th>Porta-01</th>
-                        <th>Porta-02</th>
-                        <th>Porta-03</th>
-                        <th>Porta-04</th>
-                        <th>Porta-05</th>
-                        <th>Porta-06</th>
-                        <th>Porta-07</th>
-                        <th>Porta-08</th>
+                        <th>PORTA</th>
+                        <th>OUT-01</th>
+                        <th>OUT-02</th>
+                        <th>OUT-03</th>
+                        <th>OUT-04</th>
+                        <th>OUT-05</th>
+                        <th>OUT-06</th>
+                        <th>OUT-07</th>
+                        <th>OUT-08</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -180,7 +182,7 @@
                         <td id="status-8">Desligado</td>
                     </tr>
                     <tr>
-                        <td>Modo Operação</td>
+                        <td>Modo</td>
                         <td id="modo-1">Normal</td>
                         <td id="modo-2">Normal</td>
                         <td id="modo-3">Normal</td>
@@ -203,6 +205,13 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="conf" id="conf">
+           <p class="informativo">Informações:</p> 
+            <p class="informativo">Todos os botões, incluindo os da placa, são interativos.</p>
+            <p class="informativo">Clique no relé de saída para alterar o modo de trabalho de cada canal.</p>
+            <p class="informativo">Nos modos Retenção e Detecção, simulamos interruptores e sensores:</p>
+            <p class="informativo">Ao clicar e segurar ou clicar e soltar fora da área do botão, ele manterá o status retido.</p> 
         </div>
     </div>
     <div id="functionModal" class="modal">

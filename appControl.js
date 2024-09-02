@@ -79,9 +79,10 @@ function alternarSimulador(ativo) {
     const controlButtons = document.querySelector('.control-buttons');
     const placa = document.getElementById('sigeImage'); // Seleciona a imagem da placa
     const itens = document.getElementById('itens');
+    const confinfo = document.getElementById('conf');
 
 
-
+    conf.style.display = ativo ? 'block' : 'none';
     itens.style.display = ativo ? 'block' : 'none';
     helice.style.display = ativo ? 'block' : 'none';
 
@@ -288,7 +289,7 @@ function atualizarVisualLampada(indice) {
             }
         }
     } else if ([4].includes(estado.funcao[indice])) {
-         if (lampada) {
+        if (lampada) {
             // Altera a imagem da lâmpada com base no estado
             lampada.style.display = 'block';
             helice.style.display = 'none';
@@ -585,6 +586,35 @@ function configurarBotoes() {
     if (botaoDesligarTudo) {
         botaoDesligarTudo.addEventListener('click', function () {
             desligarTodasLampadas();
+        });
+    }
+
+
+    const externo = document.getElementById('externo');
+    if (externo) {
+        externo.addEventListener('click', function () {
+            alert("Em desenvolvimento")
+        });
+    }
+
+    const alarme = document.getElementById('alarme');
+    if (alarme) {
+        alarme.addEventListener('click', function () {
+            alert("Em desenvolvimento")
+        });
+    }
+
+    const alerta = document.getElementById('alerta');
+    if (alerta) {
+        alerta.addEventListener('click', function () {
+            alert("Em desenvolvimento")
+        });
+    }
+
+    const sincronismo = document.getElementById('sincronismo');
+    if (sincronismo) {
+        sincronismo.addEventListener('click', function () {
+            alert("Em desenvolvimento")
         });
     }
 }
