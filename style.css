@@ -826,7 +826,7 @@ td {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    width: 15%;
+    width: 12%;
     /* transform: rotate(-90deg); */
     /* Gira 90 graus anti-horário */
     display: block;
@@ -918,7 +918,7 @@ td {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    width: 15%;
+    width: 12%;
     display: none;
 
 }
