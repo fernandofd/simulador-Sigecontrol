@@ -624,6 +624,13 @@ function configurarBotoes() {
            window.open('SiGE® Control C32xIO.pdf', '_blank');
         });
     }
+
+    const youtube = document.getElementById('youtube');
+if (youtube) {
+    youtube.addEventListener('click', function () {
+        window.open('https://www.youtube.com/playlist?list=PLaVuXVytUtREk8SnlB8HyzEDp843_gOvW', '_blank');
+    });
+}
 }
 
 
