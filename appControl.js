@@ -73,44 +73,38 @@ function alternarSimulador(ativo) {
     atualizarTodasLampadas();
     esconderTodosCronometros();
 
-    const lampadas = document.querySelectorAll('.lampada');
-    const helice = document.querySelector('.helice');
-    const inputs = document.querySelectorAll('.input');
-    const controlButtons = document.querySelector('.control-buttons');
-    const placa = document.getElementById('sigeImage'); // Seleciona a imagem da placa
-    const itens = document.getElementById('itens');
-    const confinfo = document.getElementById('conf');
+    // const lampadas = document.querySelectorAll('.lampada');
+    //  const lampadasMaior = document.querySelectorAll('.lampadaMaior');
+    // const helice = document.querySelector('.helice');
+    // const heliceMaior = document.querySelector('.heliceMaior');
+    // const inputs = document.querySelectorAll('.input');
+    // const controlButtons = document.querySelector('.control-buttons');
+    const main = document.querySelectorAll('main'); // Seleciona a imagem da placa
+    // const itens = document.getElementById('itens');
+    // const confinfo = document.getElementById('conf');
 
 
-    conf.style.display = ativo ? 'block' : 'none';
-    itens.style.display = ativo ? 'block' : 'none';
-    helice.style.display = ativo ? 'block' : 'none';
+    // conf.style.display = ativo ? 'block' : 'none';
+    // itens.style.display = ativo ? 'block' : 'none';
+    // helice.style.display = ativo ? 'block' : 'none';
+    // heliceMaior.style.display = ativo ? 'block' : 'none';
 
 
-    // if (!ativo) {
-    //      helice.style.display = 'none';
-    // }else{
-    //     helice.style.display = 'block';
-    // }
-
-    lampadas.forEach(lampada => {
-        lampada.style.display = ativo ? 'block' : 'none';
 
 
-    });
 
-    inputs.forEach(input => {
-        input.style.display = ativo ? 'block' : 'none';
-    });
+    // lampadas.forEach(lampada => {
+    //     lampada.style.display = ativo ? 'block' : 'none';
+    // });
 
-    controlButtons.style.display = ativo ? 'flex' : 'none';
+    // inputs.forEach(input => {
+    //     input.style.display = ativo ? 'block' : 'none';
+    // });
+
+    // controlButtons.style.display = ativo ? 'flex' : 'none';
 
     // Aplica ou remove a classe ofuscado na imagem da placa
-    if (ativo) {
-        placa.classList.remove('ofuscado');
-    } else {
-        placa.classList.add('ofuscado');
-    }
+
     if (ativo) {
         atualizarTodasLampadas();
     }
@@ -215,22 +209,29 @@ function atualizarTodasLampadas() {
             case 0:
             case 1:
             case 2:
-            case 3:
-            case 7:
             case 8:
             case 9:
-                interruptor.src = "interruptorPON.png";
+                interruptor.src = "./interruptorPON.png";
                 break;
             case 4: // Detecção
             case 5: // Retenção
-                interruptor.src = "interruptorOFF.png";
+                interruptor.src = "./interruptorOFF.png";
                 break;
             case 6: // Contatora
-                interruptor.src = "interruptorPON.png";
+                interruptor.src = "./interruptorPON.png";
+
+                break;
+
+            case 3:
+            case 7:
+                interruptor.src = "./interruptorPON.png";
+                
+                   
+              
                 break;
 
             default:
-                interruptor.src = "interruptorPON.png"; // Imagem padrão
+                interruptor.src = "./interruptorPON.png"; // Imagem padrão
                 break;
         }
         atualizarVisualLampada(i);
@@ -245,6 +246,10 @@ function atualizarVisualLampada(indice) {
     const led = document.getElementById(`led${indice + 1}`);
     const lampada = document.getElementById(`lamp${indice + 1}`); // Seleciona a lâmpada correspondente
     const helice = document.getElementById(`helice${indice + 1}`);
+    const lampadaMaior = document.getElementById(`lampMaior`);
+    const heliceMaior = document.getElementById(`heliceMaior`);
+    const textlampMaior = document.getElementById(`textlampMaior`);
+    textlampMaior.innerHTML = `S0${indice + 1}`;
 
 
     if (led) {
@@ -256,44 +261,81 @@ function atualizarVisualLampada(indice) {
         if (lampada) {
             // Altera a imagem da lâmpada com base no estado
             lampada.style.display = 'block';
+            lampadaMaior.style.display = 'block';
             helice.style.display = 'none';
-            lampada.src = estado.lamp[indice] ? './lampada ligada.png' : 'lampada desligada.png';
+            heliceMaior.style.display = 'none';
+            lampada.src = estado.lamp[indice] ? './lampada ligada.png' : './lampada desligada.png';
+            lampadaMaior.src = estado.lamp[indice] ? './lampada ligada.png' : './lampada desligada.png';
         }
     } else if ([3, 7, 8, 9].includes(estado.funcao[indice])) {
-        if (lampada) {
-            if (estado.funcao[indice] == 3) {
-                if (indice % 2 == 0) {
-                    // Altera a imagem da lâmpada com base no estado
-                    lampada.style.display = 'block';
-                    helice.style.display = 'block';
-                    lampada.src = estado.lamp[indice] ? './motorBomba.png' : 'motorBomba.png';
-                    if (estado.lamp[indice]) {
-                        helice.classList.add('helice-rotating'); // Adiciona a classe de rotação
-                    } else {
-                        helice.classList.remove('helice-rotating'); // Remove a classe de rotação
-                    }
-                } else {
-                    lampada.style.display = 'none';
-                }
 
-            }
-            if (estado.funcao[indice] == 8 || estado.funcao[indice] == 9) {
+        if (estado.funcao[indice] == 3) {
+            if (indice % 2 == 0) {
+                // Altera a imagem da lâmpada com base no estado
+
                 lampada.style.display = 'block';
+                lampadaMaior.style.display = 'block';
                 helice.style.display = 'block';
-                lampada.src = estado.lamp[indice] ? './motorBomba.png' : 'motorBomba.png';
+                heliceMaior.style.display = 'block';
+                lampada.src = estado.lamp[indice] ? './motorBomba.png' : './motorBomba.png';
+                lampadaMaior.src = estado.lamp[indice] ? './motorBomba.png' : './motorBomba.png';
                 if (estado.lamp[indice]) {
-                    helice.classList.add('helice-rotating'); // Adiciona a classe de rotação
+                    helice.classList.add('helice-rotating1'); // Adiciona a classe de rotação
+                    heliceMaior.classList.add('helice-rotating1'); // Adiciona a classe de rotação
                 } else {
-                    helice.classList.remove('helice-rotating'); // Remove a classe de rotação
+                    helice.classList.remove('helice-rotating1'); // Remove a classe de rotação
+                    heliceMaior.classList.remove('helice-rotating1'); // Remove a classe de rotação
                 }
+            } else {
+                lampada.style.display = 'none';
+            }
+
+        }
+        if (estado.funcao[indice] == 8 || estado.funcao[indice] == 9) {
+            lampada.style.display = 'block';
+            lampadaMaior.style.display = 'block';
+            helice.style.display = 'block';
+            heliceMaior.style.display = 'block';
+            lampada.src = estado.lamp[indice] ? './motorBomba.png' : './motorBomba.png';
+            lampadaMaior.src = estado.lamp[indice] ? './motorBomba.png' : './motorBomba.png';
+            if (estado.lamp[indice]) {
+                helice.classList.add('helice-rotating1'); // Adiciona a classe de rotação
+                heliceMaior.classList.add('helice-rotating1'); // Adiciona a classe de rotação
+            } else {
+                helice.classList.remove('helice-rotating1'); // Remove a classe de rotação
+                heliceMaior.classList.remove('helice-rotating1'); // Remove a classe de rotação
             }
         }
+        if (estado.funcao[indice] == 7) {
+            lampada.style.display = 'block';
+            lampadaMaior.style.display = 'block';
+            helice.style.display = 'block';
+            heliceMaior.style.display = 'block';
+            lampada.src = estado.lamp[indice] ? './motorBomba.png' : './motorBomba.png';
+            lampadaMaior.src = estado.lamp[indice] ? './motorBomba.png' : './motorBomba.png';
+            if (estado.lamp[indice] && indice % 2 == 0) {
+                helice.classList.add('helice-rotating1'); // Adiciona a classe de rotação
+                heliceMaior.classList.add('helice-rotating1'); // Adiciona a classe de rotação
+            } else if (estado.lamp[indice] && indice % 2 == 1) {
+                helice.classList.add('helice-rotating2'); // Adiciona a classe de rotação
+                heliceMaior.classList.add('helice-rotating2'); // Adiciona a classe de rotação
+            } else {
+                helice.classList.remove('helice-rotating1'); // Remove a classe de rotação
+                heliceMaior.classList.remove('helice-rotating1'); // Remove a classe de rotação
+                helice.classList.remove('helice-rotating2'); // Remove a classe de rotação
+                heliceMaior.classList.remove('helice-rotating2'); // Remove a classe de rotação
+            }
+        }
+
+
     } else if ([4].includes(estado.funcao[indice])) {
         if (lampada) {
             // Altera a imagem da lâmpada com base no estado
             lampada.style.display = 'block';
             helice.style.display = 'none';
-            lampada.src = estado.lamp[indice] ? './lampada ligada vermelha.png' : 'lampada ligada verde.png';
+            heliceMaior.style.display = 'none';
+            lampada.src = estado.lamp[indice] ? './lampada ligada vermelha.png' : './lampada ligada verde.png';
+            lampadaMaior.src = estado.lamp[indice] ? './lampada ligada vermelha.png' : './lampada ligada verde.png';
         }
 
     }
@@ -353,8 +395,10 @@ function atualizarVisualLampada(indice) {
 
 
     if (!estado.simuladorLigado) {
-        helice.classList.remove('helice-rotating'); // Remove a classe de rotação
+        helice.classList.remove('helice-rotating1'); // Remove a classe de rotação
+        heliceMaior.classList.remove('helice-rotating1'); // Remove a classe de rotação
         helice.style.display = 'none';
+        heliceMaior.style.display = 'none';
 
     }
 }
@@ -411,7 +455,7 @@ function definirFuncao(indice, funcao) {
         if (funcao != 6) {
             clearTimeout(estado[`temporizadorAtual_${indice}`]);
             clearInterval(estado[`intervaloCronometro_${indice}`]);
-            estado.funcao[indice] = funcao;
+            
             esconderCronometro(indice); // Esconde o cronômetro ao trocar de função
             // Desliga a lâmpada associada ao canal
             if (estado.lamp[indice] == 1) {
@@ -442,8 +486,9 @@ function definirFuncao(indice, funcao) {
                     esconderCronometro(par); // Esconde o cronômetro do par ao redefinir para "Normal"
                 }
             }
-
+            estado.funcao[indice] = funcao;
             atualizarTodasLampadas()
+            atualizarVisualLampada(indice)
         }
 
         if (funcao == 6) {
@@ -459,12 +504,10 @@ function definirFuncao(indice, funcao) {
 
 // Configuração dos botões
 function configurarBotoes() {
+
     for (let i = 0; i < 8; i++) {
         let botao = document.getElementById(`bot${i + 1}`);
         let interruptor = document.getElementById(`inp${i + 1}`);
-
-        console.log("%c[executarModoRetencao] target: ", "color: cyan", botao);
-
 
         if (botao) {
             botao.addEventListener('click', function () {
@@ -555,6 +598,7 @@ function configurarBotoes() {
                 });
             }
 
+
             let botaoRele = document.getElementById(`rele${i + 1}`);
             if (botaoRele) {
                 botaoRele.addEventListener('click', function () {
@@ -621,16 +665,16 @@ function configurarBotoes() {
     const manual = document.getElementById('manual');
     if (manual) {
         manual.addEventListener('click', function () {
-           window.open('SiGE® Control C32xIO.pdf', '_blank');
+            window.open('SiGE® Control C32xIO.pdf', '_blank');
         });
     }
 
     const youtube = document.getElementById('youtube');
-if (youtube) {
-    youtube.addEventListener('click', function () {
-        window.open('https://www.youtube.com/playlist?list=PLaVuXVytUtREk8SnlB8HyzEDp843_gOvW', '_blank');
-    });
-}
+    if (youtube) {
+        youtube.addEventListener('click', function () {
+            window.open('https://www.youtube.com/playlist?list=PLaVuXVytUtREk8SnlB8HyzEDp843_gOvW', '_blank');
+        });
+    }
 }
 
 
@@ -1016,6 +1060,7 @@ function iniciarContagemRegressiva(indice, duracao, acaoFinal) {
 function mostrarCronometro(indice, duracao) {
     const display = document.getElementById(`timerDisplay${indice + 1}`);
     const displayLamp = document.getElementById(`timerDisplayLamp${indice + 1}`); // Novo cronômetro
+
     let tempoRestante = duracao / 1000;
 
     display.style.display = 'block';
@@ -1034,11 +1079,15 @@ function mostrarCronometro(indice, duracao) {
         tempoRestante--;
         if (tempoRestante > 0) {
             display.textContent = `${tempoRestante}`;
-            if (displayLamp) displayLamp.textContent = `${tempoRestante} s`;
+            if (displayLamp) {
+                displayLamp.textContent = `${tempoRestante} s`;
+            }
         } else {
             clearInterval(intervalo);
             display.style.display = 'none';
-            if (displayLamp) displayLamp.style.display = 'none';
+            if (displayLamp) {
+                displayLamp.style.display = 'none';
+            }
         }
     }, 1000);
 
@@ -1054,7 +1103,9 @@ function esconderCronometro(indice) {
     const display = document.getElementById(`timerDisplay${indice + 1}`);
     const displayLamp = document.getElementById(`timerDisplayLamp${indice + 1}`); // Novo cronômetro
     display.style.display = 'none'; // Oculta o cronômetro
-    if (displayLamp) displayLamp.style.display = 'none';
+    if (displayLamp) {
+        displayLamp.style.display = 'none';
+    }
 
 }
 
@@ -1080,13 +1131,17 @@ function tocarSom() {
 
 function atualizarVisualInterruptor(indice, estadoInterruptor) {
     const interruptor = document.getElementById(`inp${indice + 1}`);
+
     if (interruptor) {
         if (estadoInterruptor === 'on') {
             interruptor.src = "./interruptorON.png"; // Altera para a imagem ON ao pressionar
+
         } else if (estadoInterruptor === 'off') {
             interruptor.src = "./interruptorOFF.png"; // Altera para a imagem OFF ao soltar
+
         } else if (estadoInterruptor === 'idle') {
             interruptor.src = "./interruptorPON.png"; // Volta para a imagem padrão
+
         }
     }
 }

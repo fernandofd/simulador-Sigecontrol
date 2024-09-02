@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <img src="./oemlogo.png" class="logo" alt="logo" id="logo">
         <h1 class="h1simulador">Simulador SigeControl</h1>
-        <p>Ligar e Desligar a Automação</p>
+        <p class="ligar">Ligar e Desligar a Automação</p>
         <img src="./seta.png" alt="" class="seta">
         <div class="toggle-switch">
 
@@ -33,14 +33,32 @@
             <button id="alerta" class="control-btn">Alerta Vizinhos</button>
             <button id="sincronismo" class="control-btn">Sincronismo com a Placa</button>
             <button id="manual" class="control-btn">Manual SigeControl</button>
-             <button id="youtube" class="control-btn">Vídeos Youtube</button>
+            <button id="youtube" class="control-btn">Vídeos Youtube</button>
 
         </div>
+                
 
         <div class="trabalho">
             <div class="divoutput">
 
+                <div class="nomelamp" id="nomeLamp1" >S01</div>
+                <div class="nomelamp" id="nomeLamp2" >S02</div>
+                <div class="nomelamp" id="nomeLamp3" >S03</div>
+                <div class="nomelamp" id="nomeLamp4" >S04</div>
+                <div class="nomelamp" id="nomeLamp5" >S05</div>
+                <div class="nomelamp" id="nomeLamp6" >S06</div>
+                <div class="nomelamp" id="nomeLamp7" >S07</div>
+                <div class="nomelamp" id="nomeLamp8" >S08</div>
 
+
+                <div class="nomeinp" id="nomeinp1" >INP1</div>
+                <div class="nomeinp" id="nomeinp2" >INP2</div>
+                <div class="nomeinp" id="nomeinp3" >INP3</div>
+                <div class="nomeinp" id="nomeinp4" >INP4</div>
+                <div class="nomeinp" id="nomeinp5" >INP5</div>
+                <div class="nomeinp" id="nomeinp6" >INP6</div>
+                <div class="nomeinp" id="nomeinp7" >INP7</div>
+                <div class="nomeinp" id="nomeinp8" >INP8</div>
 
                 <img src="./lampada desligada.png" class="lampada" alt="lampada" id="lamp1">
                 <img src="./lampada desligada.png" class="lampada" alt="lampada" id="lamp2">
@@ -51,6 +69,9 @@
                 <img src="./lampada desligada.png" class="lampada" alt="lampada" id="lamp7">
                 <img src="./lampada desligada.png" class="lampada" alt="lampada" id="lamp8">
 
+                <img src="./lampada desligada.png" class="lampadaMaior" alt="lampada" id="lampMaior">
+                <p class="textlampMaior" id="textlampMaior">S01</p>
+
                 <img src="./helice2.png" class="helice" alt="helice" id="helice1">
                 <img src="./helice2.png" class="helice" alt="helice" id="helice2">
                 <img src="./helice2.png" class="helice" alt="helice" id="helice3">
@@ -59,6 +80,8 @@
                 <img src="./helice2.png" class="helice" alt="helice" id="helice6">
                 <img src="./helice2.png" class="helice" alt="helice" id="helice7">
                 <img src="./helice2.png" class="helice" alt="helice" id="helice8">
+
+                <img src="./helice2.png" class="heliceMaior" alt="helice" id="heliceMaior">
 
                 <!-- Novos cronômetros para exibição perto das lâmpadas -->
                 <div id="timerDisplayLamp1" class="timer-display-lamp"></div>
@@ -69,6 +92,7 @@
                 <div id="timerDisplayLamp6" class="timer-display-lamp"></div>
                 <div id="timerDisplayLamp7" class="timer-display-lamp"></div>
                 <div id="timerDisplayLamp8" class="timer-display-lamp"></div>
+
             </div>
 
             <div class="divinput">
@@ -81,6 +105,8 @@
                 <img src="./interruptorPON.png" class="input" alt="interruptor" id="inp6">
                 <img src="./interruptorPON.png" class="input" alt="interruptor" id="inp7">
                 <img src="./interruptorPON.png" class="input" alt="interruptor" id="inp8">
+
+             
 
             </div>
 
