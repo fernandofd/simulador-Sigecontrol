@@ -617,6 +617,13 @@ function configurarBotoes() {
             alert("Em desenvolvimento")
         });
     }
+
+    const manual = document.getElementById('manual');
+    if (manual) {
+        manual.addEventListener('click', function () {
+           window.open('SiGE® Control C32xIO.pdf', '_blank');
+        });
+    }
 }
 
 
