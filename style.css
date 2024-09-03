@@ -72,13 +72,13 @@ main {
 .control-btn {
     margin: 5%;
     padding: 2%;
-    margin-bottom: 8%;
+    margin-bottom: 6%;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
 }
 
 .control-btn:hover {
