@@ -1339,3 +1339,21 @@ td {
     right: -10%;
    
 }
+
+.clickrele {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    display: block;
+    z-index: 2;
+    
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#clickrele{
+     top: 13%;
+    right: 8%;
+   
+}
