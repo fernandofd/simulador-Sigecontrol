@@ -1144,7 +1144,7 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1.2%;
-    height: 16%;
+    height: 14%;
     display: block;
     z-index: 1;
     background-color: #ff0000;
@@ -1153,49 +1153,49 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #cabo8 {
-     top: -10%;
+     top: -8%;
     right: 7.3%;
    
 }
 
 #cabo7 {
-    top: -10%;
+    top: -8%;
     right: 15.3%;
    
 }
 
 #cabo6 {
-    top: -10%;
+    top: -8%;
     right: 23.3%;
    
 }
 
 #cabo5 {
-    top: -10%;
+    top: -8%;
     right: 31.3%;
     
 }
 
 #cabo4 {
-    top: -10%;
+    top: -8%;
     right: 39%;
     
 }
 
 #cabo3 {
-     top: -10%;
+     top: -8%;
     right: 46.9%;
    
    
 }
 
 #cabo2 {
-   top: -10%;
+   top: -8%;
     right: 54.9%;
 }
 
 #cabo1 {
-   top: -10%;
+   top: -8%;
     right: 62.8%;
 }
 
@@ -1214,7 +1214,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #caboF{
-     top: -23%;
+     top: -15%;
     right: 0.5%;
    
 }
@@ -1235,7 +1235,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #caboN{
-     top: -17%;
+     top: -12%;
     right: 0.5%;
    
 }
@@ -1247,7 +1247,7 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1.1%;
-    height: 17%;
+    height: 12%;
     display: block;
     z-index: 1;
     background-color: rgb(0, 98, 255);
@@ -1256,7 +1256,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #caboN1{
-     top: -17%;
+     top: -12%;
     right: 83%;
    
 }
@@ -1277,7 +1277,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #disjuntorFase{
-     top: -19%;
+     top: -16%;
     right: 84.5%;
    
 }
@@ -1288,7 +1288,7 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1.1%;
-    height: 23%;
+    height: 15%;
     display: block;
     z-index: 1;
     background-color: yellow;
@@ -1297,7 +1297,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #caboF1{
-     top: -23%;
+     top: -15%;
     right: 85.5%;
    
 }
@@ -1307,7 +1307,7 @@ td {
     position: absolute;
     text-align: center;
     color: white;
-    font-size: 1.3vw;
+    font-size: 1vw;
     display: block;
     z-index: 2;
     
@@ -1316,8 +1316,8 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #nomefase{
-     top: -25%;
-    right: -7%;
+     top: -9%;
+    right: 89%;
    
 }
 
@@ -1326,7 +1326,7 @@ td {
     position: absolute;
     text-align: center;
     color: white;
-    font-size: 1.3vw;
+    font-size: 1vw;
     display: block;
     z-index: 2;
     
@@ -1335,8 +1335,8 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #nomeneutro{
-     top: -19%;
-    right: -10%;
+     top: -9%;
+    right: 75%;
    
 }
 
@@ -1344,7 +1344,7 @@ td {
     position: absolute;
     text-align: center;
     color: white;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     display: block;
     z-index: 2;
     
@@ -1354,6 +1354,6 @@ td {
 /* Ajuste as posições conforme necessário para cada display de timer */
 #clickrele{
      top: 13%;
-    right: 8%;
+    right: 11%;
    
 }
