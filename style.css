@@ -1136,3 +1136,206 @@ td {
 
 }
 
+
+
+.cabo {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1.2%;
+    height: 16%;
+    display: block;
+    z-index: 1;
+    background-color: #ff0000;
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#cabo8 {
+     top: -10%;
+    right: 7.3%;
+   
+}
+
+#cabo7 {
+    top: -10%;
+    right: 15.3%;
+   
+}
+
+#cabo6 {
+    top: -10%;
+    right: 23.3%;
+   
+}
+
+#cabo5 {
+    top: -10%;
+    right: 31.3%;
+    
+}
+
+#cabo4 {
+    top: -10%;
+    right: 39%;
+    
+}
+
+#cabo3 {
+     top: -10%;
+    right: 46.9%;
+   
+   
+}
+
+#cabo2 {
+   top: -10%;
+    right: 54.9%;
+}
+
+#cabo1 {
+   top: -10%;
+    right: 62.8%;
+}
+
+.caboF {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 85.5%;
+    height: 1.8%;
+    display: block;
+    z-index: 1;
+    background-color: yellow;
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#caboF{
+     top: -23%;
+    right: 0.5%;
+   
+}
+
+
+.caboN {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 83%;
+    height: 1.8%;
+    display: block;
+    z-index: 1;
+    background-color: rgb(0, 98, 255);
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#caboN{
+     top: -17%;
+    right: 0.5%;
+   
+}
+
+
+.caboN1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1.1%;
+    height: 17%;
+    display: block;
+    z-index: 1;
+    background-color: rgb(0, 98, 255);
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#caboN1{
+     top: -17%;
+    right: 83%;
+   
+}
+
+
+
+.disjuntorFase {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 3%;
+    display: block;
+    z-index: 1;
+    
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#disjuntorFase{
+     top: -19%;
+    right: 84.5%;
+   
+}
+
+.caboF1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1.1%;
+    height: 23%;
+    display: block;
+    z-index: 1;
+    background-color: yellow;
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#caboF1{
+     top: -23%;
+    right: 85.5%;
+   
+}
+
+
+.nomefase {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    display: block;
+    z-index: 2;
+    
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#nomefase{
+     top: -25%;
+    right: -7%;
+   
+}
+
+
+.nomeneutro {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    display: block;
+    z-index: 2;
+    
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#nomeneutro{
+     top: -19%;
+    right: -10%;
+   
+}
