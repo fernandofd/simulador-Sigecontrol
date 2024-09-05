@@ -111,7 +111,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 45%;
+    width: 40%;
 
 }
 
@@ -1131,11 +1131,24 @@ td {
     width: 7%;
     display: block;
 
-     top: 81%;
-    right: 28%;
+     top: 80%;
+    right: 30%;
 
 }
 
+
+.colmeia {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 30%;
+    display: block;
+
+     top: 85%;
+    right: 100%;
+
+}
 
 
 .cabo {
@@ -1336,7 +1349,7 @@ td {
 /* Ajuste as posições conforme necessário para cada display de timer */
 #nomeneutro{
      top: -9%;
-    right: 75%;
+    right: 74%;
    
 }
 
@@ -1355,5 +1368,45 @@ td {
 #clickrele{
      top: 13%;
     right: 11%;
+   
+}
+
+.cabopositivo{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1%;
+    height: 15%;
+    display: block;
+    z-index: 1;
+    background-color:red;
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#cabopositivo{
+     top: 98%;
+    right: 69%;
+   
+}
+
+.cabonegativo{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1%;
+    height: 15%;
+    display: block;
+    z-index: 1;
+    background-color:rgb(121, 116, 116);
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#cabonegativo{
+     top: 98%;
+    right: 67%;
    
 }
