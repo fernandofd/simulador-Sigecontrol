@@ -530,7 +530,7 @@ select#functionSelect {
     position: absolute;
     text-align: center;
     color: white;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     display: none;
     /* Ocultar inicialmente */
 
@@ -1128,11 +1128,25 @@ td {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    width: 7%;
+    width: 20%;
     display: block;
 
-     top: 80%;
-    right: 30%;
+     top: 100%;
+    right: -1%;
+
+}
+
+.quadro{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 20%;
+    display: block;
+    z-index: 2;
+
+     top: -30%;
+    right: -17%;
 
 }
 
@@ -1145,7 +1159,20 @@ td {
     width: 30%;
     display: block;
 
-     top: 85%;
+     top: 105%;
+    right: 70%;
+
+}
+
+.textFonte {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 10%;
+    display: block;
+
+     top: 105%;
     right: 100%;
 
 }
@@ -1353,23 +1380,7 @@ td {
    
 }
 
-.clickrele {
-    position: absolute;
-    text-align: center;
-    color: white;
-    font-size: 1.1vw;
-    display: block;
-    z-index: 2;
-    
 
-}
-
-/* Ajuste as posições conforme necessário para cada display de timer */
-#clickrele{
-     top: 13%;
-    right: 11%;
-   
-}
 
 .cabopositivo{
     position: absolute;
