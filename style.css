@@ -105,6 +105,11 @@ main {
 }
 
 
+#alternarexterno, #alerta{
+    display: none;
+}
+
+
 .sigecontrol-board {
     position: relative;
     display: flex;
@@ -481,7 +486,7 @@ h2 {
     /* Borda arredondada */
 }
 
-.close {
+.close, .closeexterna {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -490,12 +495,12 @@ h2 {
 }
 
 .close:hover,
-.close:focus {
+.close:focus, .closeexterna:hover, .closeexterna:focus  {
     color: #000;
     text-decoration: none;
 }
 
-button#saveFunction {
+button#saveFunction, button#saveFunctionexterna {
     padding: 10px 20px;
     margin-left: 22%;
     margin-top: 10%;
@@ -508,13 +513,13 @@ button#saveFunction {
     font-size: 16px;
 }
 
-button#saveFunction:hover {
+button#saveFunction:hover, button#saveFunctionexterna:hover {
     background-color: #45a049;
     /* Um tom mais escuro de verde no hover */
 }
 
 /* Estilo do select */
-select#functionSelect {
+select#functionSelect, select#functionSelectexterna {
     width: 100%;
     padding: 8px;
     margin-top: 10px;
@@ -1151,6 +1156,91 @@ td {
 
 
 }
+
+
+.janela{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 35%;
+    display: block;
+    z-index: 2;
+
+     top: 35%;
+    right: 100%;
+
+
+
+}
+
+
+.caboAlarme1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 17%;
+    height: 1.8%;
+    display: block;
+    z-index: 1;
+    background-color: rgb(255, 111, 0);
+     top: 26.5%;
+    left: -14.5%;
+
+
+}
+
+.caboAlarme2 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1.2%;
+    height: 15%;
+    display: block;
+    z-index: 1;
+    background-color: rgb(255, 111, 0);
+     top: 27%;
+    left: -14.5%;
+ 
+
+}
+
+
+.caboAlarmeGND1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 19%;
+    height: 1.8%;
+    display: block;
+    z-index: 1;
+    background-color: rgb(146, 146, 146);
+     top: 23%;
+    left: -16.5%;
+  
+
+}
+
+.caboAlarmeGND2 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 1.2%;
+    height: 17%;
+    display: block;
+    z-index: 1;
+     background-color: rgb(146, 146, 146);
+     top: 25%;
+    left: -16.5%;
+ 
+
+}
+
+
 
 
 .colmeia {
