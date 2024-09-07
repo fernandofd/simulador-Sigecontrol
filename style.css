@@ -1154,13 +1154,12 @@ td {
 .colmeia {
     position: absolute;
     text-align: center;
-    color: white;
-    font-size: 1.3vw;
     width: 30%;
     display: block;
 
      top: 105%;
     right: 70%;
+
 
 }
 
@@ -1171,7 +1170,6 @@ td {
     font-size: 1.3vw;
     width: 10%;
     display: block;
-
      top: 105%;
     right: 100%;
 
@@ -1388,9 +1386,9 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1%;
-    height: 15%;
+    height: 13%;
     display: block;
-    z-index: 1;
+    z-index: 0;
     background-color:red;
 
 }
@@ -1408,16 +1406,57 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1%;
-    height: 15%;
+    height: 18%;
     display: block;
     z-index: 1;
-    background-color:rgb(121, 116, 116);
+    background-color:rgb(0, 0, 0);
 
 }
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #cabonegativo{
      top: 98%;
+    right: 67%;
+   
+}
+
+
+.cabopositivo2{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 4.5%;
+    height: 1.3%;
+    display: block;
+    z-index: 1;
+    background-color:red;
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#cabopositivo2{
+     top: 111%;
+    right: 69%;
+   
+}
+
+.cabonegativo2{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+     width: 6.5%;
+    height: 1.4%;
+    display: block;
+    z-index: 1;
+    background-color:rgb(0, 0, 0);
+
+}
+
+/* Ajuste as posições conforme necessário para cada display de timer */
+#cabonegativo2{
+     top: 115%;
     right: 67%;
    
 }
