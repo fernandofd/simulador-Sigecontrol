@@ -1165,9 +1165,9 @@ td {
     font-size: 1.3vw;
     width: 35%;
     display: block;
-    z-index: 2;
+    z-index: 3;
 
-     top: 37%;
+     top:40%;
     right: 100%;
 
 
@@ -1181,7 +1181,7 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 17%;
-    height: 1.8%;
+    height: 2%;
     display: block;
     z-index: 1;
     background-color: rgb(255, 111, 0);
@@ -1197,7 +1197,7 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1.2%;
-    height: 15%;
+    height: 20%;
     display: block;
     z-index: 1;
     background-color: rgb(255, 111, 0);
@@ -1230,7 +1230,7 @@ td {
     color: white;
     font-size: 1.3vw;
     width: 1.2%;
-    height: 17%;
+    height: 22%;
     display: block;
     z-index: 1;
      background-color: rgb(146, 146, 146);
@@ -1240,7 +1240,20 @@ td {
 
 }
 
+.corneta {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 10%;
+    display: block;
+    z-index: 1;
 
+     top: -20%;
+    left: 22%;
+  
+
+}
 
 
 .colmeia {
@@ -1429,7 +1442,7 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #nomefase{
-     top: -9%;
+     top: -12%;
     right: 89%;
    
 }
@@ -1448,8 +1461,8 @@ td {
 
 /* Ajuste as posições conforme necessário para cada display de timer */
 #nomeneutro{
-     top: -9%;
-    right: 74%;
+     top: -26%;
+    right: 86%;
    
 }
 
