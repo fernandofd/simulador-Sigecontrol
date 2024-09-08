@@ -1175,6 +1175,51 @@ td {
 }
 
 
+.ladrao{
+    position: absolute;
+    
+    width: 25%;
+    display: block;
+    z-index: 1;
+
+     top:50%;
+    right: 105%;
+    display: none;
+
+
+
+}
+
+
+.lampalarme{
+    position: absolute;
+    
+    width: 10%;
+    display: block;
+    z-index: 1;
+
+     top:-22%;
+    left: 16%;
+
+
+
+}
+
+.corneta {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1.3vw;
+    width: 10%;
+    display: block;
+    z-index: 1;
+
+     top: -20%;
+    left: 24%;
+  
+
+}
+
 .caboAlarme1 {
     position: absolute;
     text-align: center;
@@ -1240,20 +1285,7 @@ td {
 
 }
 
-.corneta {
-    position: absolute;
-    text-align: center;
-    color: white;
-    font-size: 1.3vw;
-    width: 10%;
-    display: block;
-    z-index: 1;
 
-     top: -20%;
-    left: 22%;
-  
-
-}
 
 
 .colmeia {
